@@ -1,7 +1,6 @@
 package com.rustywarfare.modstudio.view;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
