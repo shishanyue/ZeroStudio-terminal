@@ -3,19 +3,12 @@ package com.rustywarfare.modstudio.shared.termux.settings.properties;
 import com.google.common.collect.ImmutableBiMap;
 import com.rustywarfare.modstudio.shared.termux.shell.am.TermuxAmSocketServer;
 import com.rustywarfare.modstudio.shared.theme.NightMode;
-import com.rustywarfare.modstudio.shared.file.FileUtils;
-import com.rustywarfare.modstudio.shared.file.filesystem.FileType;
 import com.rustywarfare.modstudio.shared.settings.properties.SharedProperties;
 import com.rustywarfare.modstudio.shared.termux.TermuxConstants;
-import com.rustywarfare.modstudio.shared.logger.Logger;
 import com.rustywarfare.modstudio.terminal.TerminalEmulator;
 import com.rustywarfare.modstudio.view.TerminalView;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /*
  * Version: v0.18.0
@@ -467,15 +460,13 @@ public final class TermuxPropertyConstants {
      * "true" -> false
      * default: false
      */
-    public static final Set<String> TERMUX_DEFAULT_INVERETED_FALSE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST = new HashSet<>(Arrays.asList(
-    ));
+    public static final Set<String> TERMUX_DEFAULT_INVERETED_FALSE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST = new HashSet<>(Collections.emptyList());
 
     /** Defines the set for keys loaded by termux that have default inverted boolean behaviour with true as default.
      * "false" -> true
      * "true" -> false
      * default: true
      */
-    public static final Set<String> TERMUX_DEFAULT_INVERETED_TRUE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST = new HashSet<>(Arrays.asList(
-    ));
+    public static final Set<String> TERMUX_DEFAULT_INVERETED_TRUE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST = new HashSet<>(Collections.emptyList());
 
 }

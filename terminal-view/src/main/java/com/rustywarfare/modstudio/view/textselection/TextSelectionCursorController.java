@@ -98,10 +98,10 @@ public class TextSelectionCursorController implements CursorController {
         TerminalBuffer screen = terminalView.mEmulator.getScreen();
         if (!" ".equals(screen.getSelectedText(mSelX1, mSelY1, mSelX1, mSelY1))) {
             // Selecting something other than whitespace. Expand to word.
-            while (mSelX1 > 0 && !"".equals(screen.getSelectedText(mSelX1 - 1, mSelY1, mSelX1 - 1, mSelY1))) {
+            while (mSelX1 > 0 && !screen.getSelectedText(mSelX1 - 1, mSelY1, mSelX1 - 1, mSelY1).isEmpty()) {
                 mSelX1--;
             }
-            while (mSelX2 < terminalView.mEmulator.mColumns - 1 && !"".equals(screen.getSelectedText(mSelX2 + 1, mSelY1, mSelX2 + 1, mSelY1))) {
+            while (mSelX2 < terminalView.mEmulator.mColumns - 1 && !screen.getSelectedText(mSelX2 + 1, mSelY1, mSelX2 + 1, mSelY1).isEmpty()) {
                 mSelX2++;
             }
         }
