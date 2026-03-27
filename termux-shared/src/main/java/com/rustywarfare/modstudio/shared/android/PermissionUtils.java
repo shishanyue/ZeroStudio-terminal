@@ -86,17 +86,16 @@ public class PermissionUtils {
     /**
      * Request user to grant required permissions to the app.
      *
-     * @param context The context for operations. It must be an instance of {@link Activity} or
-     * {@link AppCompatActivity}.
-     * @param permission The {@link String} name for permission to request.
+     * @param context     The context for operations. It must be an instance of {@link Activity} or
+     *                    {@link AppCompatActivity}.
+     * @param permission  The {@link String} name for permission to request.
      * @param requestCode The request code to use while asking for permission. It must be `>=0` or
      *                    will fail silently and will log an exception.
-     * @return Returns {@code true} if requesting the permission was successful, otherwise {@code false}.
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static boolean requestPermission(@NonNull Context context, @NonNull String permission,
-                                            int requestCode) {
-        return requestPermissions(context, new String[]{permission}, requestCode);
+    public static void requestPermission(@NonNull Context context, @NonNull String permission,
+                                         int requestCode) {
+        requestPermissions(context, new String[]{permission}, requestCode);
     }
 
     /**
@@ -542,20 +541,19 @@ public class PermissionUtils {
      * Request user to grant {@link Manifest.permission#REQUEST_IGNORE_BATTERY_OPTIMIZATIONS}
      * permission to the app.
      *
-     * @param context The context for operations, like an {@link Activity} or {@link Service} context.
-     *                It must be an instance of {@link Activity} or {@link AppCompatActivity} if
-     *                result is required via the Activity#onActivityResult() callback and
-     *                {@code requestCode} is `>=0`.
+     * @param context     The context for operations, like an {@link Activity} or {@link Service} context.
+     *                    It must be an instance of {@link Activity} or {@link AppCompatActivity} if
+     *                    result is required via the Activity#onActivityResult() callback and
+     *                    {@code requestCode} is `>=0`.
      * @param requestCode The request code to use while asking for permission. It must be `>=0` if
      *                    result it required.
-     * @return Returns the {@code error} if requesting the permission was not successful, otherwise {@code null}.
      */
     @SuppressLint("BatteryLife")
-    public static Error requestDisableBatteryOptimizations(@NonNull Context context, int requestCode) {
+    public static void requestDisableBatteryOptimizations(@NonNull Context context, int requestCode) {
         Logger.logInfo(LOG_TAG, "Requesting to disable battery optimizations");
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            return null;
+            return;
 
         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
         intent.setData(Uri.parse("package:" + context.getPackageName()));
@@ -565,10 +563,11 @@ public class PermissionUtils {
         if (!(context instanceof Activity))
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        if (requestCode >=0)
-            return ActivityUtils.startActivityForResult(context, requestCode, intent);
-        else
-            return ActivityUtils.startActivity(context, intent);
+        if (requestCode >=0) {
+            ActivityUtils.startActivityForResult(context, requestCode, intent);
+        } else {
+            ActivityUtils.startActivity(context, intent);
+        }
     }
 
 }

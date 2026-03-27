@@ -604,7 +604,7 @@ public class TermuxUtils {
             Logger.logErrorExtended(LOG_TAG, executionCommand.toString());
 
         String markdownString = "## " + TermuxConstants.TERMUX_APP_NAME + " APT Info\n\n" +
-            executionCommand.resultData.stdout.toString() +
+            executionCommand.resultData.stdout +
             "\n##\n";
 
         return markdownString;
