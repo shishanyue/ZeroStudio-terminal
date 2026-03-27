@@ -29,14 +29,10 @@ public class TermuxFloatPreferencesFragment extends PreferenceFragmentCompat {
 
 class TermuxFloatPreferencesDataStore extends PreferenceDataStore {
 
-    private final Context mContext;
-    private final TermuxFloatAppSharedPreferences mPreferences;
-
     private static TermuxFloatPreferencesDataStore mInstance;
 
     private TermuxFloatPreferencesDataStore(Context context) {
-        mContext = context;
-        mPreferences = TermuxFloatAppSharedPreferences.build(context, true);
+        TermuxFloatAppSharedPreferences mPreferences = TermuxFloatAppSharedPreferences.build(context, true);
     }
 
     public static synchronized TermuxFloatPreferencesDataStore getInstance(Context context) {

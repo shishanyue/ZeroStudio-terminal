@@ -65,13 +65,12 @@ public class AmSocketServerRunConfig extends LocalSocketRunConfig implements Ser
     /** Get a log {@link String} for the {@link AmSocketServerRunConfig}. */
     @NonNull
     public String getLogString() {
-        StringBuilder logString = new StringBuilder();
-        logString.append(super.getLogString()).append("\n\n\n");
 
-        logString.append("Am Command:");
-        logString.append("\n").append(Logger.getSingleLineLogStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-"));
+        String logString = super.getLogString() + "\n\n\n" +
+            "Am Command:" +
+            "\n" + Logger.getSingleLineLogStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-");
 
-        return logString.toString();
+        return logString;
     }
 
     /**
@@ -88,13 +87,12 @@ public class AmSocketServerRunConfig extends LocalSocketRunConfig implements Ser
     /** Get a markdown {@link String} for the {@link AmSocketServerRunConfig}. */
     @NonNull
     public String getMarkdownString() {
-        StringBuilder markdownString = new StringBuilder();
-        markdownString.append(super.getMarkdownString()).append("\n\n\n");
 
-        markdownString.append("## ").append("Am Command");
-        markdownString.append("\n").append(MarkdownUtils.getSingleLineMarkdownStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-"));
+        String markdownString = super.getMarkdownString() + "\n\n\n" +
+            "## " + "Am Command" +
+            "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-");
 
-        return markdownString.toString();
+        return markdownString;
     }
 
 

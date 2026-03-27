@@ -101,7 +101,7 @@ public abstract class TermuxSharedProperties {
      * {@code false} will be returned.
      */
     public boolean isPropertyValueTrue(String key, boolean cached, boolean logErrorOnInvalidValue) {
-        return (boolean) SharedProperties.getBooleanValueForStringValue(key, (String) getPropertyValue(key, null, cached), false, logErrorOnInvalidValue, LOG_TAG);
+        return SharedProperties.getBooleanValueForStringValue(key, getPropertyValue(key, null, cached), false, logErrorOnInvalidValue, LOG_TAG);
     }
 
     /**
@@ -119,7 +119,7 @@ public abstract class TermuxSharedProperties {
      * {@code true} will be returned.
      */
     public boolean isPropertyValueFalse(String key, boolean cached, boolean logErrorOnInvalidValue) {
-        return (boolean) SharedProperties.getInvertedBooleanValueForStringValue(key, (String) getPropertyValue(key, null, cached), true, logErrorOnInvalidValue, LOG_TAG);
+        return SharedProperties.getInvertedBooleanValueForStringValue(key, getPropertyValue(key, null, cached), true, logErrorOnInvalidValue, LOG_TAG);
     }
 
 
@@ -260,54 +260,54 @@ public abstract class TermuxSharedProperties {
         switch (key) {
             /* int */
             case TermuxPropertyConstants.KEY_BELL_BEHAVIOUR:
-                return (int) getBellBehaviourInternalPropertyValueFromValue(value);
+                return getBellBehaviourInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_DELETE_TMPDIR_FILES_OLDER_THAN_X_DAYS_ON_EXIT:
-                return (int) getDeleteTMPDIRFilesOlderThanXDaysOnExitInternalPropertyValueFromValue(value);
+                return getDeleteTMPDIRFilesOlderThanXDaysOnExitInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_TERMINAL_CURSOR_BLINK_RATE:
-                return (int) getTerminalCursorBlinkRateInternalPropertyValueFromValue(value);
+                return getTerminalCursorBlinkRateInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_TERMINAL_CURSOR_STYLE:
-                return (int) getTerminalCursorStyleInternalPropertyValueFromValue(value);
+                return getTerminalCursorStyleInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_TERMINAL_MARGIN_HORIZONTAL:
-                return (int) getTerminalMarginHorizontalInternalPropertyValueFromValue(value);
+                return getTerminalMarginHorizontalInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_TERMINAL_MARGIN_VERTICAL:
-                return (int) getTerminalMarginVerticalInternalPropertyValueFromValue(value);
+                return getTerminalMarginVerticalInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_TERMINAL_TRANSCRIPT_ROWS:
-                return (int) getTerminalTranscriptRowsInternalPropertyValueFromValue(value);
+                return getTerminalTranscriptRowsInternalPropertyValueFromValue(value);
 
             /* float */
             case TermuxPropertyConstants.KEY_TERMINAL_TOOLBAR_HEIGHT_SCALE_FACTOR:
-                return (float) getTerminalToolbarHeightScaleFactorInternalPropertyValueFromValue(value);
+                return getTerminalToolbarHeightScaleFactorInternalPropertyValueFromValue(value);
 
             /* Integer (may be null) */
             case TermuxPropertyConstants.KEY_SHORTCUT_CREATE_SESSION:
             case TermuxPropertyConstants.KEY_SHORTCUT_NEXT_SESSION:
             case TermuxPropertyConstants.KEY_SHORTCUT_PREVIOUS_SESSION:
             case TermuxPropertyConstants.KEY_SHORTCUT_RENAME_SESSION:
-                return (Integer) getCodePointForSessionShortcuts(key, value);
+                return getCodePointForSessionShortcuts(key, value);
 
             /* String (may be null) */
             case TermuxPropertyConstants.KEY_BACK_KEY_BEHAVIOUR:
-                return (String) getBackKeyBehaviourInternalPropertyValueFromValue(value);
+                return getBackKeyBehaviourInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_DEFAULT_WORKING_DIRECTORY:
-                return (String) getDefaultWorkingDirectoryInternalPropertyValueFromValue(value);
+                return getDefaultWorkingDirectoryInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_EXTRA_KEYS:
-                return (String) getExtraKeysInternalPropertyValueFromValue(value);
+                return getExtraKeysInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_EXTRA_KEYS_STYLE:
-                return (String) getExtraKeysStyleInternalPropertyValueFromValue(value);
+                return getExtraKeysStyleInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_NIGHT_MODE:
-                return (String) getNightModeInternalPropertyValueFromValue(value);
+                return getNightModeInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR:
-                return (String) getSoftKeyboardToggleBehaviourInternalPropertyValueFromValue(value);
+                return getSoftKeyboardToggleBehaviourInternalPropertyValueFromValue(value);
             case TermuxPropertyConstants.KEY_VOLUME_KEYS_BEHAVIOUR:
-                return (String) getVolumeKeysBehaviourInternalPropertyValueFromValue(value);
+                return getVolumeKeysBehaviourInternalPropertyValueFromValue(value);
 
             default:
                 // default false boolean behaviour
                 if (TermuxPropertyConstants.TERMUX_DEFAULT_FALSE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST.contains(key))
-                    return (boolean) SharedProperties.getBooleanValueForStringValue(key, value, false, true, LOG_TAG);
+                    return SharedProperties.getBooleanValueForStringValue(key, value, false, true, LOG_TAG);
                 // default true boolean behaviour
                 if (TermuxPropertyConstants.TERMUX_DEFAULT_TRUE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST.contains(key))
-                    return (boolean) SharedProperties.getBooleanValueForStringValue(key, value, true, true, LOG_TAG);
+                    return SharedProperties.getBooleanValueForStringValue(key, value, true, true, LOG_TAG);
                 // default inverted false boolean behaviour
                 //else if (TermuxPropertyConstants.TERMUX_DEFAULT_INVERETED_FALSE_BOOLEAN_BEHAVIOUR_PROPERTIES_LIST.contains(key))
                 //    return (boolean) SharedProperties.getInvertedBooleanValueForStringValue(key, value, false, true, LOG_TAG);
@@ -659,7 +659,7 @@ public abstract class TermuxSharedProperties {
     }
 
     public boolean isBackKeyTheEscapeKey() {
-        return (boolean) TermuxPropertyConstants.IVALUE_BACK_KEY_BEHAVIOUR_ESCAPE.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_BACK_KEY_BEHAVIOUR, true));
+        return TermuxPropertyConstants.IVALUE_BACK_KEY_BEHAVIOUR_ESCAPE.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_BACK_KEY_BEHAVIOUR, true));
     }
 
     public String getDefaultWorkingDirectory() {
@@ -677,11 +677,11 @@ public abstract class TermuxSharedProperties {
     }
 
     public boolean shouldEnableDisableSoftKeyboardOnToggle() {
-        return (boolean) TermuxPropertyConstants.IVALUE_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR_ENABLE_DISABLE.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR, true));
+        return TermuxPropertyConstants.IVALUE_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR_ENABLE_DISABLE.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_SOFT_KEYBOARD_TOGGLE_BEHAVIOUR, true));
     }
 
     public boolean areVirtualVolumeKeysDisabled() {
-        return (boolean) TermuxPropertyConstants.IVALUE_VOLUME_KEY_BEHAVIOUR_VOLUME.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_VOLUME_KEYS_BEHAVIOUR, true));
+        return TermuxPropertyConstants.IVALUE_VOLUME_KEY_BEHAVIOUR_VOLUME.equals(getInternalPropertyValue(TermuxPropertyConstants.KEY_VOLUME_KEYS_BEHAVIOUR, true));
     }
 
 

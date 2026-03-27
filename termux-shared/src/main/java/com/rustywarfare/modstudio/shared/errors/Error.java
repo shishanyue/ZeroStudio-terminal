@@ -227,12 +227,11 @@ public class Error implements Serializable {
     }
 
     public String getMinimalErrorLogString() {
-        StringBuilder logString = new StringBuilder();
 
-        logString.append(getCodeString());
-        logString.append(getTypeAndMessageLogString());
+        String logString = getCodeString() +
+            getTypeAndMessageLogString();
 
-        return logString.toString();
+        return logString;
     }
 
     /**
@@ -247,12 +246,11 @@ public class Error implements Serializable {
     }
 
     public String getMinimalErrorString() {
-        StringBuilder logString = new StringBuilder();
 
-        logString.append("(").append(getCode()).append(") ");
-        logString.append(getType()).append(": ").append(getMessage());
+        String logString = "(" + getCode() + ") " +
+            getType() + ": " + getMessage();
 
-        return logString.toString();
+        return logString;
     }
 
     /**

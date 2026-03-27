@@ -74,12 +74,10 @@ class DebuggingPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return null;
         if (key == null) return null;
 
-        switch (key) {
-            case "log_level":
-                return String.valueOf(mPreferences.getLogLevel(true));
-            default:
-                return null;
+        if (key.equals("log_level")) {
+            return String.valueOf(mPreferences.getLogLevel(true));
         }
+        return null;
     }
 
     @Override
@@ -87,14 +85,10 @@ class DebuggingPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return;
         if (key == null) return;
 
-        switch (key) {
-            case "log_level":
-                if (value != null) {
-                    mPreferences.setLogLevel(mContext, Integer.parseInt(value), true);
-                }
-                break;
-            default:
-                break;
+        if (key.equals("log_level")) {
+            if (value != null) {
+                mPreferences.setLogLevel(mContext, Integer.parseInt(value), true);
+            }
         }
     }
 

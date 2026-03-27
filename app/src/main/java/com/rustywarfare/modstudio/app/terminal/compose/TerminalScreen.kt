@@ -218,7 +218,7 @@ fun TerminalWorkspace(session: TerminalSession) {
                         // 实现终端双指捏合缩放功能
                         override fun onScale(scale: Float): Float {
                             val currentFont = TerminalSettings.fontSize.value.toFloat()
-                            val newFontSize = if (scale < 8f || scale > 32f) {
+                            val newFontSize = if (scale !in 8f..32f) {
                                 (currentFont * scale).coerceIn(8f, 32f)
                             } else {
                                 scale.coerceIn(8f, 32f)
@@ -327,9 +327,9 @@ fun TerminalWorkspace(session: TerminalSession) {
                                 val extraKeysInfo = ExtraKeysInfo(
                                     VIRTUAL_KEYS_JSON, "default", ExtraKeysConstants.CONTROL_CHARS_ALIASES
                                 )
-                                setButtonTextColor(android.graphics.Color.WHITE)
+                                buttonTextColor = android.graphics.Color.WHITE
                                 // 透明背景以便透出下方的深色半透明背景
-                                setButtonBackgroundColor(android.graphics.Color.TRANSPARENT)
+                                buttonBackgroundColor = android.graphics.Color.TRANSPARENT
                                 // 传入计算好的实际像素高度 58dp * density
                                 reload(extraKeysInfo, 58f * density)
                             }
@@ -337,7 +337,7 @@ fun TerminalWorkspace(session: TerminalSession) {
 
                         LaunchedEffect(terminalViewRef) {
                             terminalViewRef?.let { tv ->
-                                virtualKeysView.setExtraKeysViewClient(TerminalExtraKeys(tv))
+                                virtualKeysView.extraKeysViewClient = TerminalExtraKeys(tv)
                                 extraKeysViewRef = virtualKeysView
                             }
                         }

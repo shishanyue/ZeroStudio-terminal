@@ -118,16 +118,15 @@ public class SettingsActivity extends AppCompatActivity {
                         public void run() {
                             String title = "About";
 
-                            StringBuilder aboutString = new StringBuilder();
-                            aboutString.append(TermuxUtils.getAppInfoMarkdownString(context, TermuxUtils.AppInfoMode.TERMUX_AND_PLUGIN_PACKAGES));
-                            aboutString.append("\n\n").append(AndroidUtils.getDeviceInfoMarkdownString(context, true));
-                            aboutString.append("\n\n").append(TermuxUtils.getImportantLinksMarkdownString(context));
+                            String aboutString = TermuxUtils.getAppInfoMarkdownString(context, TermuxUtils.AppInfoMode.TERMUX_AND_PLUGIN_PACKAGES) +
+                                "\n\n" + AndroidUtils.getDeviceInfoMarkdownString(context, true) +
+                                "\n\n" + TermuxUtils.getImportantLinksMarkdownString(context);
 
                             String userActionName = UserAction.ABOUT.getName();
 
                             ReportInfo reportInfo = new ReportInfo(userActionName,
                                 TermuxConstants.TERMUX_APP.TERMUX_SETTINGS_ACTIVITY_NAME, title);
-                            reportInfo.setReportString(aboutString.toString());
+                            reportInfo.setReportString(aboutString);
                             reportInfo.setReportSaveFileLabelAndPath(userActionName,
                                 Environment.getExternalStorageDirectory() + "/" +
                                     FileUtils.sanitizeFileName(TermuxConstants.TERMUX_APP_NAME + "-" + userActionName + ".log", true, true));

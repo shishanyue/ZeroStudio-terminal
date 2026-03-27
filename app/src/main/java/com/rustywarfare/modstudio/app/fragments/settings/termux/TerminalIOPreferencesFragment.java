@@ -29,13 +29,11 @@ public class TerminalIOPreferencesFragment extends PreferenceFragmentCompat {
 
 class TerminalIOPreferencesDataStore extends PreferenceDataStore {
 
-    private final Context mContext;
     private final TermuxAppSharedPreferences mPreferences;
 
     private static TerminalIOPreferencesDataStore mInstance;
 
     private TerminalIOPreferencesDataStore(Context context) {
-        mContext = context;
         mPreferences = TermuxAppSharedPreferences.build(context, true);
     }
 

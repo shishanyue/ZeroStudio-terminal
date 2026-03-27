@@ -364,31 +364,27 @@ public class LocalClientSocket implements Closeable {
     /** Get a log {@link String} for the {@link LocalClientSocket}. */
     @NonNull
     public String getLogString() {
-        StringBuilder logString = new StringBuilder();
 
-        logString.append("Client Socket:");
-        logString.append("\n").append(Logger.getSingleLineLogStringEntry("FD", mFD, "-"));
-        logString.append("\n").append(Logger.getSingleLineLogStringEntry("Creation Time", mCreationTime, "-"));
-        logString.append("\n\n\n");
+        String logString = "Client Socket:" +
+            "\n" + Logger.getSingleLineLogStringEntry("FD", mFD, "-") +
+            "\n" + Logger.getSingleLineLogStringEntry("Creation Time", mCreationTime, "-") +
+            "\n\n\n" +
+            mPeerCred.getLogString();
 
-        logString.append(mPeerCred.getLogString());
-
-        return logString.toString();
+        return logString;
     }
 
     /** Get a markdown {@link String} for the {@link LocalClientSocket}. */
     @NonNull
     public String getMarkdownString() {
-        StringBuilder markdownString = new StringBuilder();
 
-        markdownString.append("## ").append("Client Socket");
-        markdownString.append("\n").append(MarkdownUtils.getSingleLineMarkdownStringEntry("FD", mFD, "-"));
-        markdownString.append("\n").append(MarkdownUtils.getSingleLineMarkdownStringEntry("Creation Time", mCreationTime, "-"));
-        markdownString.append("\n\n\n");
+        String markdownString = "## " + "Client Socket" +
+            "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("FD", mFD, "-") +
+            "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("Creation Time", mCreationTime, "-") +
+            "\n\n\n" +
+            mPeerCred.getMarkdownString();
 
-        markdownString.append(mPeerCred.getMarkdownString());
-
-        return markdownString.toString();
+        return markdownString;
     }
 
 

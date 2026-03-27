@@ -74,12 +74,10 @@ class DebuggingPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return null;
         if (key == null) return null;
 
-        switch (key) {
-            case "log_level":
-                return String.valueOf(mPreferences.getLogLevel(true));
-            default:
-                return null;
+        if (key.equals("log_level")) {
+            return String.valueOf(mPreferences.getLogLevel(true));
         }
+        return null;
     }
 
     @Override
@@ -87,14 +85,10 @@ class DebuggingPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return;
         if (key == null) return;
 
-        switch (key) {
-            case "log_level":
-                if (value != null) {
-                    mPreferences.setLogLevel(mContext, Integer.parseInt(value), true);
-                }
-                break;
-            default:
-                break;
+        if (key.equals("log_level")) {
+            if (value != null) {
+                mPreferences.setLogLevel(mContext, Integer.parseInt(value), true);
+            }
         }
     }
 
@@ -103,24 +97,18 @@ class DebuggingPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return;
         if (key == null) return;
 
-        switch (key) {
-            case "terminal_view_key_logging_enabled":
-                mPreferences.setTerminalViewKeyLoggingEnabled(value, true);
-                break;
-            default:
-                break;
+        if (key.equals("terminal_view_key_logging_enabled")) {
+            mPreferences.setTerminalViewKeyLoggingEnabled(value, true);
         }
     }
 
     @Override
     public boolean getBoolean(String key, boolean defValue) {
         if (mPreferences == null) return false;
-        switch (key) {
-            case "terminal_view_key_logging_enabled":
-                return mPreferences.isTerminalViewKeyLoggingEnabled(true);
-            default:
-                return false;
+        if (key.equals("terminal_view_key_logging_enabled")) {
+            return mPreferences.isTerminalViewKeyLoggingEnabled(true);
         }
+        return false;
     }
 
 }

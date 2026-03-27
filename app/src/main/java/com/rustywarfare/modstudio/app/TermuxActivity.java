@@ -835,12 +835,12 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
     }
 
     public DrawerLayout getDrawer() {
-        return (DrawerLayout) findViewById(R.id.drawer_layout);
+        return findViewById(R.id.drawer_layout);
     }
 
 
     public ViewPager getTerminalToolbarViewPager() {
-        return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
+        return findViewById(R.id.terminal_toolbar_view_pager);
     }
 
     public float getTerminalToolbarDefaultHeight() {

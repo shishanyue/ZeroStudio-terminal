@@ -203,9 +203,9 @@ public class ShareUtils {
 
             if (storagePermissionRequestCode >= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (context instanceof AppCompatActivity)
-                    PermissionUtils.requestPermission(((AppCompatActivity) context), Manifest.permission.WRITE_EXTERNAL_STORAGE, storagePermissionRequestCode);
+                    PermissionUtils.requestPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE, storagePermissionRequestCode);
                 else if (context instanceof Activity)
-                    PermissionUtils.requestPermission(((Activity) context), Manifest.permission.WRITE_EXTERNAL_STORAGE, storagePermissionRequestCode);
+                    PermissionUtils.requestPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE, storagePermissionRequestCode);
             }
 
             return;

@@ -348,7 +348,7 @@ public class SharedProperties {
      * {@code false} will be returned.
      */
     public static boolean isPropertyValueTrue(Context context, File propertiesFile, String key, boolean logErrorOnInvalidValue, @Nullable SharedPropertiesParser sharedPropertiesParser) {
-        return (boolean) getBooleanValueForStringValue(key, (String) getProperty(context, propertiesFile, key, null, sharedPropertiesParser), false, logErrorOnInvalidValue, LOG_TAG);
+        return getBooleanValueForStringValue(key, getProperty(context, propertiesFile, key, null, sharedPropertiesParser), false, logErrorOnInvalidValue, LOG_TAG);
     }
 
 
@@ -371,7 +371,7 @@ public class SharedProperties {
      * {@code true} will be returned.
      */
     public static boolean isPropertyValueFalse(Context context, File propertiesFile, String key, boolean logErrorOnInvalidValue, @Nullable SharedPropertiesParser sharedPropertiesParser) {
-        return (boolean) getInvertedBooleanValueForStringValue(key, (String) getProperty(context, propertiesFile, key, null, sharedPropertiesParser), true, logErrorOnInvalidValue, LOG_TAG);
+        return getInvertedBooleanValueForStringValue(key, getProperty(context, propertiesFile, key, null, sharedPropertiesParser), true, logErrorOnInvalidValue, LOG_TAG);
     }
 
 

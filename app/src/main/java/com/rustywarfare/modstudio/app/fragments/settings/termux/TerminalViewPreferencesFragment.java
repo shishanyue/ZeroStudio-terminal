@@ -29,13 +29,11 @@ public class TerminalViewPreferencesFragment extends PreferenceFragmentCompat {
 
 class TerminalViewPreferencesDataStore extends PreferenceDataStore {
 
-    private final Context mContext;
     private final TermuxAppSharedPreferences mPreferences;
 
     private static TerminalViewPreferencesDataStore mInstance;
 
     private TerminalViewPreferencesDataStore(Context context) {
-        mContext = context;
         mPreferences = TermuxAppSharedPreferences.build(context, true);
     }
 
@@ -53,12 +51,8 @@ class TerminalViewPreferencesDataStore extends PreferenceDataStore {
         if (mPreferences == null) return;
         if (key == null) return;
 
-        switch (key) {
-            case "terminal_margin_adjustment":
-                    mPreferences.setTerminalMarginAdjustment(value);
-                break;
-            default:
-                break;
+        if (key.equals("terminal_margin_adjustment")) {
+            mPreferences.setTerminalMarginAdjustment(value);
         }
     }
 
@@ -66,12 +60,10 @@ class TerminalViewPreferencesDataStore extends PreferenceDataStore {
     public boolean getBoolean(String key, boolean defValue) {
         if (mPreferences == null) return false;
 
-        switch (key) {
-            case "terminal_margin_adjustment":
-                return mPreferences.isTerminalMarginAdjustmentEnabled();
-            default:
-                return false;
+        if (key.equals("terminal_margin_adjustment")) {
+            return mPreferences.isTerminalMarginAdjustmentEnabled();
         }
+        return false;
     }
 
 }

@@ -137,15 +137,14 @@ public class AmSocketServer {
                                           @NonNull LocalClientSocket clientSocket,
                                           int exitCode,
                                           @Nullable String stdout, @Nullable String stderr) {
-        StringBuilder result = new StringBuilder();
-        result.append(sanitizeExitCode(clientSocket, exitCode));
-        result.append('\0');
-        result.append(stdout != null ? stdout : "");
-        result.append('\0');
-        result.append(stderr != null ? stderr : "");
+        String result = String.valueOf(sanitizeExitCode(clientSocket, exitCode)) +
+            '\0' +
+            (stdout != null ? stdout : "") +
+            '\0' +
+            (stderr != null ? stderr : "");
 
         // Send result to client and close output stream
-        Error error = clientSocket.sendDataToOutputStream(result.toString(), true);
+        Error error = clientSocket.sendDataToOutputStream(result, true);
         if (error != null) {
             localSocketManager.onError(clientSocket, error);
         }

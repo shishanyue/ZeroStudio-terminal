@@ -259,9 +259,6 @@ public class ResultSender {
             // Move error or output temp file to final destination
             error = FileUtils.moveRegularFile("error or output temp file", resultConfig.resultDirectoryPath + "/" + temp_filename,
                 resultConfig.resultDirectoryPath + "/" + resultConfig.resultFileBasename, false);
-            if (error != null) {
-                return error;
-            }
         } else {
             String filename;
 
@@ -338,9 +335,9 @@ public class ResultSender {
             filename = RESULT_SENDER.RESULT_FILE_ERR_PREFIX + resultConfig.resultFilesSuffix;
             error = FileUtils.moveRegularFile(RESULT_SENDER.RESULT_FILE_ERR_PREFIX + " temp file", resultConfig.resultDirectoryPath + "/" + temp_filename,
                 resultConfig.resultDirectoryPath + "/" + filename, false);
-            if (error != null) {
-                return error;
-            }
+        }
+        if (error != null) {
+            return error;
         }
 
         return null;

