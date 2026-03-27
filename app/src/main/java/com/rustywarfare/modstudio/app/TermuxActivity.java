@@ -662,46 +662,57 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
     public boolean onContextItemSelected(MenuItem item) {
         TerminalSession session = getCurrentSession();
 
-        switch (item.getItemId()) {
-            case CONTEXT_MENU_SELECT_URL_ID:
+        return switch (item.getItemId()) {
+            case CONTEXT_MENU_SELECT_URL_ID -> {
                 mTermuxTerminalViewClient.showUrlSelection();
-                return true;
-            case CONTEXT_MENU_SHARE_TRANSCRIPT_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_SHARE_TRANSCRIPT_ID -> {
                 mTermuxTerminalViewClient.shareSessionTranscript();
-                return true;
-            case CONTEXT_MENU_SHARE_SELECTED_TEXT:
+                yield true;
+            }
+            case CONTEXT_MENU_SHARE_SELECTED_TEXT -> {
                 mTermuxTerminalViewClient.shareSelectedText();
-                return true;
-            case CONTEXT_MENU_AUTOFILL_USERNAME:
+                yield true;
+            }
+            case CONTEXT_MENU_AUTOFILL_USERNAME -> {
                 mTerminalView.requestAutoFillUsername();
-                return true;
-            case CONTEXT_MENU_AUTOFILL_PASSWORD:
+                yield true;
+            }
+            case CONTEXT_MENU_AUTOFILL_PASSWORD -> {
                 mTerminalView.requestAutoFillPassword();
-                return true;
-            case CONTEXT_MENU_RESET_TERMINAL_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_RESET_TERMINAL_ID -> {
                 onResetTerminalSession(session);
-                return true;
-            case CONTEXT_MENU_KILL_PROCESS_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_KILL_PROCESS_ID -> {
                 showKillSessionDialog(session);
-                return true;
-            case CONTEXT_MENU_STYLING_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_STYLING_ID -> {
                 showStylingDialog();
-                return true;
-            case CONTEXT_MENU_TOGGLE_KEEP_SCREEN_ON:
+                yield true;
+            }
+            case CONTEXT_MENU_TOGGLE_KEEP_SCREEN_ON -> {
                 toggleKeepScreenOn();
-                return true;
-            case CONTEXT_MENU_HELP_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_HELP_ID -> {
                 ActivityUtils.startActivity(this, new Intent(this, HelpActivity.class));
-                return true;
-            case CONTEXT_MENU_SETTINGS_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_SETTINGS_ID -> {
                 ActivityUtils.startActivity(this, new Intent(this, SettingsActivity.class));
-                return true;
-            case CONTEXT_MENU_REPORT_ID:
+                yield true;
+            }
+            case CONTEXT_MENU_REPORT_ID -> {
                 mTermuxTerminalViewClient.reportIssueFromTranscript();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
+                yield true;
+            }
+            default -> super.onContextItemSelected(item);
+        };
     }
 
     @Override

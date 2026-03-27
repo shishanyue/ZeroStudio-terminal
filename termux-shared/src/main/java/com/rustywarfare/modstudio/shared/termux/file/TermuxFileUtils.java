@@ -38,8 +38,8 @@ public class TermuxFileUtils {
         if (paths == null) return null;
         List<String> expandedPaths = new ArrayList<>();
 
-        for (int i = 0; i < paths.size(); i++) {
-            expandedPaths.add(getExpandedTermuxPath(paths.get(i)));
+        for (String path : paths) {
+            expandedPaths.add(getExpandedTermuxPath(path));
         }
 
         return expandedPaths;
@@ -72,8 +72,8 @@ public class TermuxFileUtils {
         if (paths == null) return null;
         List<String> unExpandedPaths = new ArrayList<>();
 
-        for (int i = 0; i < paths.size(); i++) {
-            unExpandedPaths.add(getUnExpandedTermuxPath(paths.get(i)));
+        for (String path : paths) {
+            unExpandedPaths.add(getUnExpandedTermuxPath(path));
         }
 
         return unExpandedPaths;

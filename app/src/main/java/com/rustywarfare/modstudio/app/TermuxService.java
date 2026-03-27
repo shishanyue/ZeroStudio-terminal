@@ -271,25 +271,24 @@ public final class TermuxService extends Service implements AppShell.AppShellCli
         List<AppShell> termuxTasks = new ArrayList<>(mShellManager.mTermuxTasks);
         List<ExecutionCommand> pendingPluginExecutionCommands = new ArrayList<>(mShellManager.mPendingPluginExecutionCommands);
 
-        for (int i = 0; i < termuxSessions.size(); i++) {
-            ExecutionCommand executionCommand = termuxSessions.get(i).getExecutionCommand();
+        for (TermuxSession termuxSession : termuxSessions) {
+            ExecutionCommand executionCommand = termuxSession.getExecutionCommand();
             processResult = mWantsToStop || executionCommand.isPluginExecutionCommandWithPendingResult();
-            termuxSessions.get(i).killIfExecuting(this, processResult);
+            termuxSession.killIfExecuting(this, processResult);
             if (!processResult)
-                mShellManager.mTermuxSessions.remove(termuxSessions.get(i));
+                mShellManager.mTermuxSessions.remove(termuxSession);
         }
 
 
-        for (int i = 0; i < termuxTasks.size(); i++) {
-            ExecutionCommand executionCommand = termuxTasks.get(i).getExecutionCommand();
+        for (AppShell termuxTask : termuxTasks) {
+            ExecutionCommand executionCommand = termuxTask.getExecutionCommand();
             if (executionCommand.isPluginExecutionCommandWithPendingResult())
-                termuxTasks.get(i).killIfExecuting(this, true);
+                termuxTask.killIfExecuting(this, true);
             else
-                mShellManager.mTermuxTasks.remove(termuxTasks.get(i));
+                mShellManager.mTermuxTasks.remove(termuxTask);
         }
 
-        for (int i = 0; i < pendingPluginExecutionCommands.size(); i++) {
-            ExecutionCommand executionCommand = pendingPluginExecutionCommands.get(i);
+        for (ExecutionCommand executionCommand : pendingPluginExecutionCommands) {
             if (!executionCommand.shouldNotProcessResults() && executionCommand.isPluginExecutionCommandWithPendingResult()) {
                 if (executionCommand.setStateFailed(Errno.ERRNO_CANCELLED.getCode(), this.getString(com.rustywarfare.modstudio.shared.R.string.error_execution_cancelled))) {
                     TermuxPluginUtils.processPluginExecutionCommandResult(this, LOG_TAG, executionCommand);

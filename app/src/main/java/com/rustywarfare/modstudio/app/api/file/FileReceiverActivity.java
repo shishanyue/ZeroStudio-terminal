@@ -167,8 +167,11 @@ public class FileReceiverActivity extends AppCompatActivity {
 
                 final File editorProgramFile = new File(EDITOR_PROGRAM);
                 if (!editorProgramFile.isFile()) {
-                    showErrorDialogAndQuit("The following file does not exist:\n$HOME/bin/termux-file-editor\n\n"
-                        + "Create this file as a script or a symlink - it will be called with the received file as only argument.");
+                    showErrorDialogAndQuit("""
+                        The following file does not exist:
+                        $HOME/bin/termux-file-editor
+                        
+                        Create this file as a script or a symlink - it will be called with the received file as only argument.""");
                     return;
                 }
 
@@ -231,8 +234,11 @@ public class FileReceiverActivity extends AppCompatActivity {
     void handleUrlAndFinish(final String url) {
         final File urlOpenerProgramFile = new File(URL_OPENER_PROGRAM);
         if (!urlOpenerProgramFile.isFile()) {
-            showErrorDialogAndQuit("The following file does not exist:\n$HOME/bin/termux-url-opener\n\n"
-                + "Create this file as a script or a symlink - it will be called with the shared URL as the first argument.");
+            showErrorDialogAndQuit("""
+                The following file does not exist:
+                $HOME/bin/termux-url-opener
+                
+                Create this file as a script or a symlink - it will be called with the shared URL as the first argument.""");
             return;
         }
 

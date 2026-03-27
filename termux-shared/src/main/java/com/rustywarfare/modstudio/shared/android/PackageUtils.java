@@ -654,8 +654,8 @@ public class PackageUtils {
             List<ActivityManager.RunningAppProcessInfo> processInfos = activityManager.getRunningAppProcesses();
             if (processInfos != null) {
                 ActivityManager.RunningAppProcessInfo processInfo;
-                for (int i = 0; i < processInfos.size(); i++) {
-                    processInfo = processInfos.get(i);
+                for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+                    processInfo = info;
                     if (processInfo.processName.equals(packageName))
                         return String.valueOf(processInfo.pid);
                 }
