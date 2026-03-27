@@ -1,5 +1,5 @@
 plugins {
-    id "com.android.application"
+    id "com.android.library"
     id "org.jetbrains.kotlin.android"
     id "org.jetbrains.kotlin.plugin.compose" 
 }
@@ -153,7 +153,7 @@ android {
             useLegacyPackaging true
         }
     }
-
+/*
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             if (variant.buildType.name == "debug") {
@@ -164,7 +164,7 @@ android {
                 outputFileName = new File("termux-app_" + (apkVersionTag ? apkVersionTag : project.ext.packageVariant + "-" + "release") + "_" + (abi ? abi : "universal") + ".apk")
             }
         }
-    }
+    }*/
 
     buildFeatures {
         buildConfig true
@@ -181,7 +181,7 @@ android {
 dependencies {
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.robolectric:robolectric:4.10"
-    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:1.1.5"
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:2.1.5"
 }
 
 task versionName {
@@ -196,7 +196,7 @@ def validateVersionName(String versionName) {
     if (!java.util.regex.Pattern.matches("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?\$", versionName))
         throw new GradleException("The versionName '"  + versionName + "' is not a valid version as per semantic version '2.0.0' spec in the format 'major.minor.patch(-prerelease)(+buildmetadata)'. https://semver.org/spec/v2.0.0.html.")
 }
-
+/*
 def downloadBootstrap(String arch, String expectedChecksum, String version) {
     def digest = java.security.MessageDigest.getInstance("SHA-256")
 
@@ -238,7 +238,7 @@ def downloadBootstrap(String arch, String expectedChecksum, String version) {
         file.delete()
         throw new GradleException("Wrong checksum for " + remoteUrl + ": expected: " + expectedChecksum + ", actual: " + checksum)
     }
-}
+}*/
 
 clean {
     doLast {
@@ -247,7 +247,7 @@ clean {
         tree.each { it.delete() }
     }
 }
-
+/*
 task downloadBootstraps() {
     doLast {
         def packageVariant = project.ext.packageVariant
@@ -267,10 +267,12 @@ task downloadBootstraps() {
             throw new GradleException("Unsupported TERMUX_PACKAGE_VARIANT \"" + packageVariant + "\"")
         }
     }
-}
+}*/
 
 afterEvaluate {
+    /*
     android.applicationVariants.all { variant ->
         variant.javaCompileProvider.get().dependsOn(downloadBootstraps)
-    }
+    }*/
 }
+tasks.register("prepareKotlinBuildScriptModel") {}
