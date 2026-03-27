@@ -14,7 +14,6 @@ import com.rustywarfare.modstudio.app.terminal.proot.PRootEnvironment
 import com.rustywarfare.modstudio.shared.termux.terminal.TermuxTerminalSessionClientBase
 import com.rustywarfare.modstudio.terminal.TerminalSession
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
