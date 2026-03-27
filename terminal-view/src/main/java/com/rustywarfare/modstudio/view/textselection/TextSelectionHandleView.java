@@ -1,6 +1,7 @@
 package com.rustywarfare.modstudio.view.textselection;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+
+import androidx.appcompat.content.res.AppCompatResources;
 
 import com.rustywarfare.modstudio.view.R;
 import com.rustywarfare.modstudio.view.TerminalView;
@@ -59,8 +62,8 @@ public class TextSelectionHandleView extends View {
         mCursorController = cursorController;
         mInitialOrientation = initialOrientation;
 
-        mHandleLeftDrawable = getContext().getDrawable(R.drawable.text_select_handle_left_material);
-        mHandleRightDrawable = getContext().getDrawable(R.drawable.text_select_handle_right_material);
+        mHandleLeftDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.text_select_handle_left_material);
+        mHandleRightDrawable = AppCompatResources.getDrawable(getContext(), R.drawable.text_select_handle_right_material);
 
         setOrientation(mInitialOrientation);
     }
