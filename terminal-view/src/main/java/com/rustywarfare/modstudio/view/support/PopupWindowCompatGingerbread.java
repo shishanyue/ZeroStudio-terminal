@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 
 /**
  * Implementation of PopupWindow compatibility that can call Gingerbread APIs.
- * https://chromium.googlesource.com/android_tools/+/HEAD/sdk/extras/android/support/v4/src/gingerbread/android/support/v4/widget/PopupWindowCompatGingerbread.java
+ * <a href="https://chromium.googlesource.com/android_tools/+/HEAD/sdk/extras/android/support/v4/src/gingerbread/android/support/v4/widget/PopupWindowCompatGingerbread.java">...</a>
  */
 public class PopupWindowCompatGingerbread {
 

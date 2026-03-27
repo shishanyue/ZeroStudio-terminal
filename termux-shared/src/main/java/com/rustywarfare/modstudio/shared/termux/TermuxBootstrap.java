@@ -125,8 +125,8 @@ public class TermuxBootstrap {
 
         /**
          * Advanced Package Tool (APT) for managing debian deb package files.
-         * https://wiki.debian.org/Apt
-         * https://wiki.debian.org/deb
+         * <a href="https://wiki.debian.org/Apt">...</a>
+         * <a href="https://wiki.debian.org/deb">...</a>
          */
         APT();
 
@@ -185,7 +185,7 @@ public class TermuxBootstrap {
         ///** {@link PackageManager#TAPM} variant for Android 7+. */
         //TAPM_ANDROID_7("tapm-android-7");
 
-        ///** {@link PackageManager#PACMAN} variant for Android 7+. */
+        ///**  variant for Android 7+. */
         //PACMAN_ANDROID_7("pacman-android-7");
 
         private final String name;

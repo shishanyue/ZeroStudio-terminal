@@ -141,10 +141,10 @@ public class TermuxFileUtils {
     /**
      * Validate the existence and permissions of directory file at path as a working directory for
      * termux app.
-     *
+     * <p>
      * The creation of missing directory and setting of missing permissions will only be done if
      * {@code path} is under paths returned by {@link #getMatchedAllowedTermuxWorkingDirectoryParentPathForPath(String)}.
-     *
+     * <p>
      * The permissions set to directory will be {@link FileUtils#APP_WORKING_DIRECTORY_PERMISSIONS}.
      *
      * @param label The optional label for the directory file. This can optionally be {@code null}.
@@ -176,12 +176,12 @@ public class TermuxFileUtils {
     /**
      * Validate if {@link TermuxConstants#TERMUX_FILES_DIR_PATH} exists and has
      * {@link FileUtils#APP_WORKING_DIRECTORY_PERMISSIONS} permissions.
-     *
+     * <p>
      * This is required because binaries compiled for termux are hard coded with
      * {@link TermuxConstants#TERMUX_PREFIX_DIR_PATH} and the path must be accessible.
-     *
+     * <p>
      * The permissions set to directory will be {@link FileUtils#APP_WORKING_DIRECTORY_PERMISSIONS}.
-     *
+     * <p>
      * This function does not create the directory manually but by calling {@link Context#getFilesDir()}
      * so that android itself creates it. However, the call will not create its parent package
      * data directory `/data/user/0/[package_name]` if it does not already exist and a `logcat`
@@ -189,7 +189,7 @@ public class TermuxFileUtils {
      * {@code Failed to ensure /data/user/0/<package_name>/files: mkdir failed: ENOENT (No such file or directory)}
      * An android app normally can't create the package data directory since its parent `/data/user/0`
      * is owned by `system` user and is normally created at app install or update time and not at app startup.
-     *
+     * <p>
      * Note that the path returned by {@link Context#getFilesDir()} may
      * be under `/data/user/[id]/[package_name]` instead of `/data/data/[package_name]`
      * defined by default by {@link TermuxConstants#TERMUX_FILES_DIR_PATH} where id will be 0 for
@@ -197,11 +197,11 @@ public class TermuxFileUtils {
      * or secondary user, then {@link TermuxConstants#TERMUX_FILES_DIR_PATH} will not be accessible
      * and will not be automatically created, unless there is a bind mount from `/data/data` to
      * `/data/user/[id]`, ideally in the right namespace.
-     * https://source.android.com/devices/tech/admin/multi-user
-     *
+     * <a href="https://source.android.com/devices/tech/admin/multi-user">...</a>
+     * <p>
      *
      * On Android version `<=10`, the `/data/user/0` is a symlink to `/data/data` directory.
-     * https://cs.android.com/android/platform/superproject/+/android-10.0.0_r47:system/core/rootdir/init.rc;l=589
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-10.0.0_r47:system/core/rootdir/init.rc;l=589">...</a>
      * {@code
      * symlink /data/data /data/user/0
      * }
@@ -213,12 +213,12 @@ public class TermuxFileUtils {
      * }
      *
      * On Android version `>=11`, the `/data/data` directory is bind mounted at `/data/user/0`.
-     * https://cs.android.com/android/platform/superproject/+/android-11.0.0_r40:system/core/rootdir/init.rc;l=705
-     * https://cs.android.com/android/_/android/platform/system/core/+/3cca270e95ca8d8bc8b800e2b5d7da1825fd7100
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-11.0.0_r40:system/core/rootdir/init.rc;l=705">...</a>
+     * <a href="https://cs.android.com/android/_/android/platform/system/core/+/3cca270e95ca8d8bc8b800e2b5d7da1825fd7100">...</a>
      * {@code
      * # Unlink /data/user/0 if we previously symlink it to /data/data
      * rm /data/user/0
-     *
+     * <p>
      * # Bind mount /data/user/0 to /data/data
      * mkdir /data/user/0 0700 system system encryption=None
      * mount none /data/data /data/user/0 bind rec
@@ -233,10 +233,10 @@ public class TermuxFileUtils {
      * The column 4 defines the root of the mount within the filesystem.
      * Basically, `/dev/block/dm-5/` is mounted at `/data` and `/dev/block/dm-5/data` is mounted at
      * `/data/user/0`.
-     * https://www.kernel.org/doc/Documentation/filesystems/proc.txt (section 3.5)
-     * https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
-     * https://unix.stackexchange.com/a/571959
-     *
+     * <a href="https://www.kernel.org/doc/Documentation/filesystems/proc.txt">...</a> (section 3.5)
+     * <a href="https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt">...</a>
+     * <a href="https://unix.stackexchange.com/a/571959">...</a>
+     * <p>
      *
      * Also note that running `/system/bin/ls -lhd /data/user/0/com.rustywarfare.modstudio` as secondary user will result
      * in `ls: /data/user/0/com.rustywarfare.modstudio: Permission denied` where `0` is primary user id but running
@@ -273,7 +273,7 @@ public class TermuxFileUtils {
      * Validate if {@link TermuxConstants#TERMUX_PREFIX_DIR_PATH} exists and has
      * {@link FileUtils#APP_WORKING_DIRECTORY_PERMISSIONS} permissions.
      * .
-     *
+     * <p>
      * The {@link TermuxConstants#TERMUX_PREFIX_DIR_PATH} directory would not exist if termux has
      * not been installed or the bootstrap setup has not been run or if it was deleted by the user.
      *

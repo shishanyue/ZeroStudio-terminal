@@ -20,8 +20,8 @@ public class AmSocketServerRunConfig extends LocalSocketRunConfig implements Ser
      * Check if {@link Manifest.permission#SYSTEM_ALERT_WINDOW} has been granted if running on Android `>= 10`
      * if starting activities. Will also check when starting services in case starting foreground
      * service is not allowed.
-     *
-     * https://developer.android.com/guide/components/activities/background-starts
+     * <p>
+     * <a href="https://developer.android.com/guide/components/activities/background-starts">...</a>
      */
     private Boolean mCheckDisplayOverAppsPermission;
     public static final boolean DEFAULT_CHECK_DISPLAY_OVER_APPS_PERMISSION = true;

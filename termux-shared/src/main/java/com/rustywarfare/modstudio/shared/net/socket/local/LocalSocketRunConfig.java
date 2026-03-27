@@ -20,13 +20,13 @@ public class LocalSocketRunConfig implements Serializable {
 
     /**
      * The {@link LocalServerSocket} path.
-     *
+     * <p>
      * For a filesystem socket, this must be an absolute path to the socket file. Creation of a new
      * socket will fail if the server starter app process does not have write and search (execute)
      * permission on the directory in which the socket is created. The client process must have write
      * permission on the socket to connect to it. Other app will not be able to connect to socket
      * if its created in private app data directory.
-     *
+     * <p>
      * For an abstract namespace socket, the first byte must be a null `\0` character. Note that on
      * Android 9+, if server app is using `targetSdkVersion` `28`, then other apps will not be able
      * to connect to it due to selinux restrictions.
@@ -34,10 +34,10 @@ public class LocalSocketRunConfig implements Serializable {
      * > Apps that target Android 9 or higher cannot share data with other apps using world-accessible
      * Unix permissions. This change improves the integrity of the Android Application Sandbox,
      * particularly the requirement that an app's private data is accessible only by that app.
-     * https://developer.android.com/about/versions/pie/android-9.0-changes-28
-     * https://github.com/android/ndk/issues/1469
-     * https://stackoverflow.com/questions/63806516/avc-denied-connectto-when-using-uds-on-android-10
-     *
+     * <a href="https://developer.android.com/about/versions/pie/android-9.0-changes-28">...</a>
+     * <a href="https://github.com/android/ndk/issues/1469">...</a>
+     * <a href="https://stackoverflow.com/questions/63806516/avc-denied-connectto-when-using-uds-on-android-10">...</a>
+     * <p>
      * Max allowed length is 108 bytes as per sun_path size (UNIX_PATH_MAX) on Linux.
      */
     protected final String mPath;
@@ -56,9 +56,9 @@ public class LocalSocketRunConfig implements Serializable {
 
     /**
      * The {@link LocalClientSocket} receiving (SO_RCVTIMEO) timeout in milliseconds.
-     *
-     * https://manpages.debian.org/testing/manpages/socket.7.en.html
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/NativeCrashListener.java;l=55
+     * <p>
+     * <a href="https://manpages.debian.org/testing/manpages/socket.7.en.html">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/NativeCrashListener.java;l=55">...</a>
      * Defaults to {@link #DEFAULT_RECEIVE_TIMEOUT}.
      */
     protected Integer mReceiveTimeout;
@@ -66,9 +66,9 @@ public class LocalSocketRunConfig implements Serializable {
 
     /**
      * The {@link LocalClientSocket} sending (SO_SNDTIMEO) timeout in milliseconds.
-     *
-     * https://manpages.debian.org/testing/manpages/socket.7.en.html
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/NativeCrashListener.java;l=55
+     * <p>
+     * <a href="https://manpages.debian.org/testing/manpages/socket.7.en.html">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/NativeCrashListener.java;l=55">...</a>
      * Defaults to {@link #DEFAULT_SEND_TIMEOUT}.
      */
     protected Integer mSendTimeout;
@@ -87,8 +87,8 @@ public class LocalSocketRunConfig implements Serializable {
      * The {@link LocalServerSocket} backlog for the maximum length to which the queue of pending connections
      * for the socket may grow. This value may be ignored or may not have one-to-one mapping
      * in kernel implementation. Value must be greater than 0.
-     *
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/core/java/android/net/LocalSocketManager.java;l=31
+     * <p>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/core/java/android/net/LocalSocketManager.java;l=31">...</a>
      * Defaults to {@link #DEFAULT_BACKLOG}.
      */
     protected Integer mBacklog;

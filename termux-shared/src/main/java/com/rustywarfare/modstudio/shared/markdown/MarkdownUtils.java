@@ -133,9 +133,9 @@ public class MarkdownUtils {
 
 
     /** Check following for more info:
-     * https://github.com/noties/Markwon/tree/v4.6.2/app-sample
-     * https://noties.io/Markwon/docs/v4/recycler/
-     * https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/readme/ReadMeActivity.kt
+     * <a href="https://github.com/noties/Markwon/tree/v4.6.2/app-sample">...</a>
+     * <a href="https://noties.io/Markwon/docs/v4/recycler/">...</a>
+     * <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/readme/ReadMeActivity.kt">...</a>
      */
     public static Markwon getRecyclerMarkwonBuilder(Context context) {
         return Markwon.builder(context)
@@ -171,8 +171,8 @@ public class MarkdownUtils {
     }
 
     /** Check following for more info:
-     * https://github.com/noties/Markwon/tree/v4.6.2/app-sample
-     * https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/notification/NotificationSample.java
+     * <a href="https://github.com/noties/Markwon/tree/v4.6.2/app-sample">...</a>
+     * <a href="https://github.com/noties/Markwon/blob/v4.6.2/app-sample/src/main/java/io/noties/markwon/app/samples/notification/NotificationSample.java">...</a>
      */
     public static Markwon getSpannedMarkwonBuilder(Context context) {
         return Markwon.builder(context)

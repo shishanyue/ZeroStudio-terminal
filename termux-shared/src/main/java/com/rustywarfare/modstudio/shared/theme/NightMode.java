@@ -17,7 +17,7 @@ public enum NightMode {
 
     /**
      * Use night or dark theme depending on system night mode.
-     * https://developer.android.com/guide/topics/resources/providing-resources#NightQualifier
+     * <a href="https://developer.android.com/guide/topics/resources/providing-resources#NightQualifier">...</a>
      */
     SYSTEM("system", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 

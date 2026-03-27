@@ -623,7 +623,7 @@ public class ExecutionCommand {
      * Get a log friendly {@link String} for {@link List<String>} argumentsArray.
      * If argumentsArray are null or of size 0, then `Arguments: -` is returned. Otherwise
      * following format is returned:
-     *
+     * <p>
      * Arguments:
      * ```
      * Arg 1: `value`
@@ -655,9 +655,9 @@ public class ExecutionCommand {
      * Get a markdown {@link String} for {@link String[]} argumentsArray.
      * If argumentsArray are null or of size 0, then `**Arguments:** -` is returned. Otherwise
      * following format is returned:
-     *
+     * <p>
      * **Arguments:**
-     *
+     * <p>
      * **Arg 1:**
      * ```
      * value

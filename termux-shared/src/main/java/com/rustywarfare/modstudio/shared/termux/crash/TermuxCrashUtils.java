@@ -130,12 +130,12 @@ public class TermuxCrashUtils implements CrashHandler.CrashHandlerClient {
      * Notify the user of an app crash by reading the crash info from the crash log file
      * at {@link TermuxConstants#TERMUX_CRASH_LOG_FILE_PATH}. The crash log file would have been
      * created by {@link com.rustywarfare.modstudio.shared.crash.CrashHandler}.
-     *
+     * <p>
      * If the crash log file exists and is not empty and
      * {@link TermuxPreferenceConstants.TERMUX_APP#KEY_CRASH_REPORT_NOTIFICATIONS_ENABLED} is
      * enabled, then a notification will be shown for the crash on the
      * {@link TermuxConstants#TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME} channel, otherwise nothing will be done.
-     *
+     * <p>
      * After reading from the crash log file, it will be moved to {@link TermuxConstants#TERMUX_CRASH_LOG_BACKUP_FILE_PATH}.
      *
      * @param currentPackageContext The {@link Context} of current package.
@@ -158,12 +158,7 @@ public class TermuxCrashUtils implements CrashHandler.CrashHandlerClient {
         if (!preferences.areCrashReportNotificationsEnabled(false))
             return;
 
-        new Thread() {
-            @Override
-            public void run() {
-                notifyAppCrashFromCrashLogFileInner(context, logTagParam);
-            }
-        }.start();
+        new Thread(() -> notifyAppCrashFromCrashLogFileInner(context, logTagParam)).start();
     }
 
     private static synchronized void notifyAppCrashFromCrashLogFileInner(final Context context, final String logTagParam) {

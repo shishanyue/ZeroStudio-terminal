@@ -51,7 +51,7 @@ public final class AppShell {
 
     /**
      * Start execution of an {@link ExecutionCommand} with {@link Runtime#exec(String[], String[], File)}.
-     *
+     * <p>
      * The {@link ExecutionCommand#executable}, must be set.
      * The  {@link ExecutionCommand#commandLabel}, {@link ExecutionCommand#arguments} and
      * {@link ExecutionCommand#workingDirectory} may optionally be set.
@@ -143,16 +143,13 @@ public final class AppShell {
                 // TODO: Should either of these be handled or returned?
             }
         } else {
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        appShell.executeInner(currentPackageContext);
-                    } catch (IllegalThreadStateException | InterruptedException e) {
-                        // TODO: Should either of these be handled or returned?
-                    }
+            new Thread(() -> {
+                try {
+                    appShell.executeInner(currentPackageContext);
+                } catch (IllegalThreadStateException | InterruptedException e) {
+                    // TODO: Should either of these be handled or returned?
                 }
-            }.start();
+            }).start();
         }
 
         return appShell;
@@ -160,7 +157,7 @@ public final class AppShell {
 
     /**
      * Sets up stdout and stderr readers for the {@link #mProcess} and waits for the process to end.
-     *
+     * <p>
      * If the processes finishes, then sets {@link ResultData#stdout}, {@link ResultData#stderr}
      * and {@link ResultData#exitCode} for the {@link #mExecutionCommand} of the {@code appShell}
      * and then calls {@link #processAppShellResult(AppShell, ExecutionCommand) to process the result}.
@@ -289,9 +286,9 @@ public final class AppShell {
 
     /**
      * Process the results of {@link AppShell} or {@link ExecutionCommand}.
-     *
+     * <p>
      * Only one of {@code appShell} and {@code executionCommand} must be set.
-     *
+     * <p>
      * If the {@code appShell} and its {@link #mAppShellClient} are not {@code null},
      * then the {@link AppShellClient#onAppShellExited(AppShell)} callback will be called.
      *

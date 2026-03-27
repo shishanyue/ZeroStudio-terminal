@@ -72,8 +72,8 @@ import java.util.Arrays;
  * <p/>
  * See
  * <ul>
- * <li>http://www.mongrel-phones.com.au/default/how_to_make_a_local_service_and_bind_to_it_in_android</li>
- * <li>https://code.google.com/p/android/issues/detail?id=6426</li>
+ * <li><a href="http://www.mongrel-phones.com.au/default/how_to_make_a_local_service_and_bind_to_it_in_android">...</a></li>
+ * <li><a href="https://code.google.com/p/android/issues/detail?id=6426">...</a></li>
  * </ul>
  * about memory leaks.
  */
@@ -565,9 +565,7 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
 
     private void setSettingsButtonView() {
         ImageButton settingsButton = findViewById(R.id.settings_button);
-        settingsButton.setOnClickListener(v -> {
-            ActivityUtils.startActivity(this, new Intent(this, SettingsActivity.class));
-        });
+        settingsButton.setOnClickListener(v -> ActivityUtils.startActivity(this, new Intent(this, SettingsActivity.class)));
     }
 
     private void setNewSessionButtonView() {
@@ -778,27 +776,24 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
      * if targeting targetSdkVersion 30 (android 11) and running on sdk 30 (android 11) and higher.
      */
     public void requestStoragePermission(boolean isPermissionCallback) {
-        new Thread() {
-            @Override
-            public void run() {
-                // Do not ask for permission again
-                int requestCode = isPermissionCallback ? -1 : PermissionUtils.REQUEST_GRANT_STORAGE_PERMISSION;
+        new Thread(() -> {
+            // Do not ask for permission again
+            int requestCode = isPermissionCallback ? -1 : PermissionUtils.REQUEST_GRANT_STORAGE_PERMISSION;
 
-                // If permission is granted, then also setup storage symlinks.
-                if(PermissionUtils.checkAndRequestLegacyOrManageExternalStoragePermission(
-                    TermuxActivity.this, requestCode, !isPermissionCallback)) {
-                    if (isPermissionCallback)
-                        Logger.logInfoAndShowToast(TermuxActivity.this, LOG_TAG,
-                            getString(com.rustywarfare.modstudio.shared.R.string.msg_storage_permission_granted_on_request));
+            // If permission is granted, then also setup storage symlinks.
+            if(PermissionUtils.checkAndRequestLegacyOrManageExternalStoragePermission(
+                TermuxActivity.this, requestCode, !isPermissionCallback)) {
+                if (isPermissionCallback)
+                    Logger.logInfoAndShowToast(TermuxActivity.this, LOG_TAG,
+                        getString(com.rustywarfare.modstudio.shared.R.string.msg_storage_permission_granted_on_request));
 
-                    TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
-                } else {
-                    if (isPermissionCallback)
-                        Logger.logInfoAndShowToast(TermuxActivity.this, LOG_TAG,
-                            getString(com.rustywarfare.modstudio.shared.R.string.msg_storage_permission_not_granted_on_request));
-                }
+                TermuxInstaller.setupStorageSymlinks(TermuxActivity.this);
+            } else {
+                if (isPermissionCallback)
+                    Logger.logInfoAndShowToast(TermuxActivity.this, LOG_TAG,
+                        getString(com.rustywarfare.modstudio.shared.R.string.msg_storage_permission_not_granted_on_request));
             }
-        }.start();
+        }).start();
     }
 
     @Override

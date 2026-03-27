@@ -21,11 +21,11 @@ public class FileUtilsTests {
 
     /**
      * Run basic tests for {@link FileUtils} class.
-     *
+     * <p>
      * Move tests need to be written, specially for failures.
-     *
+     * <p>
      * The log level must be set to verbose.
-     *
+     * <p>
      * Run at app startup like in an activity
      * FileUtilsTests.runTests(this, TermuxConstants.TERMUX_HOME_DIR_PATH + "/FileUtilsTests");
      *

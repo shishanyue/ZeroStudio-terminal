@@ -69,7 +69,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_COLOR} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable
@@ -80,7 +80,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_DRAWABLE} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable
@@ -91,7 +91,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_ID} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable
@@ -102,7 +102,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_LAYOUT} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable
@@ -113,7 +113,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_STRING} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable
@@ -124,7 +124,7 @@ public class ResourceUtils {
 
     /**
      * Get resource identifier for the given {@link #RES_TYPE_STYLE} resource name.
-     *
+     * <p>
      * This is a wrapper for {@link #getResourceId(Context, String, String, String, boolean)}.
      */
     @Nullable

@@ -32,8 +32,8 @@ import java.util.*;
 /**
  * This class consists exclusively of static methods that operate on sets of
  * {@link FilePermission} objects.
- *
- * https://cs.android.com/android/platform/superproject/+/android-11.0.0_r3:libcore/ojluni/src/main/java/java/nio/file/attribute/PosixFilePermissions.java
+ * <p>
+ * <a href="https://cs.android.com/android/platform/superproject/+/android-11.0.0_r3:libcore/ojluni/src/main/java/java/nio/file/attribute/PosixFilePermissions.java">...</a>
  *
  * @since 1.7
  */

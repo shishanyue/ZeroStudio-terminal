@@ -32,9 +32,9 @@ import com.rustywarfare.modstudio.shared.logger.Logger;
 
 /**
  * Thread utility class continuously reading from an InputStream
- *
- * https://github.com/Chainfire/libsuperuser/blob/1.1.0.201907261845/libsuperuser/src/eu/chainfire/libsuperuser/Shell.java#L141
- * https://github.com/Chainfire/libsuperuser/blob/1.1.0.201907261845/libsuperuser/src/eu/chainfire/libsuperuser/StreamGobbler.java
+ * <p>
+ * <a href="https://github.com/Chainfire/libsuperuser/blob/1.1.0.201907261845/libsuperuser/src/eu/chainfire/libsuperuser/Shell.java#L141">...</a>
+ * <a href="https://github.com/Chainfire/libsuperuser/blob/1.1.0.201907261845/libsuperuser/src/eu/chainfire/libsuperuser/StreamGobbler.java">...</a>
  */
 @SuppressWarnings({"WeakerAccess"})
 public class StreamGobbler extends Thread {

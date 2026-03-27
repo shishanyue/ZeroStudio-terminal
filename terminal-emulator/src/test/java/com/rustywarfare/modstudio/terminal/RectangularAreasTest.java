@@ -2,7 +2,7 @@ package com.rustywarfare.modstudio.terminal;
 
 public class RectangularAreasTest extends TerminalTestCase {
 
-	/** http://www.vt100.net/docs/vt510-rm/DECFRA */
+	/** <a href="<a">href="http://www.vt100.net/docs/vt510-</a>rm/DECFRA">...</a> */
 	public void testFillRectangularArea() {
 		withTerminalSized(3, 3).enterString("\033[88$x").assertLinesAre("XXX", "XXX", "XXX");
 		withTerminalSized(3, 3).enterString("\033[88;1;1;2;10$x").assertLinesAre("XXX", "XXX", "   ");
@@ -12,7 +12,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		withTerminalSized(3, 3).enterString("\033[88;100;1;100;2$x").assertLinesAre("   ", "   ", "   ");
 	}
 
-	/** http://www.vt100.net/docs/vt510-rm/DECERA */
+	/** <a href="<a">href="http://www.vt100.net/docs/vt510-</a>rm/DECERA">...</a> */
 	public void testEraseRectangularArea() {
 		withTerminalSized(3, 3).enterString("ABCDEFGHI\033[$z").assertLinesAre("   ", "   ", "   ");
 		withTerminalSized(3, 3).enterString("ABCDEFGHI\033[1;1;2;10$z").assertLinesAre("   ", "   ", "GHI");
@@ -24,7 +24,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		withTerminalSized(3, 3).enterString("A\033[$zBC").assertLinesAre(" BC", "   ", "   ");
 	}
 
-	/** http://www.vt100.net/docs/vt510-rm/DECSED */
+	/** <a href="<a">href="http://www.vt100.net/docs/vt510-</a>rm/DECSED">...</a> */
 	public void testSelectiveEraseInDisplay() {
 		// ${CSI}1"q enables protection, ${CSI}0"q disables it.
 		// ${CSI}?${0,1,2}J" erases (0=cursor to end, 1=start to cursor, 2=complete display).
@@ -33,7 +33,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		withTerminalSized(3, 3).enterString("\033[1\"qABCDE\033[0\"qFGHI\033[?2J").assertLinesAre("ABC", "DE ", "   ");
 	}
 
-	/** http://vt100.net/docs/vt510-rm/DECSEL */
+	/** <a href="<a">href="http://vt100.net/docs/vt510-</a>rm/DECSEL">...</a> */
 	public void testSelectiveEraseInLine() {
 		// ${CSI}1"q enables protection, ${CSI}0"q disables it.
 		// ${CSI}?${0,1,2}K" erases (0=cursor to end, 1=start to cursor, 2=complete line).
@@ -45,7 +45,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		withTerminalSized(3, 3).enterString("ABC\033[1\"qD\033[0\"qE\033[?2KFGHI").assertLinesAre("ABC", "D F", "GHI");
 	}
 
-	/** http://www.vt100.net/docs/vt510-rm/DECSERA */
+	/** <a href="<a">href="http://www.vt100.net/docs/vt510-r</a>m/DECSERA">...</a> */
 	public void testSelectiveEraseInRectangle() {
 		// ${CSI}1"q enables protection, ${CSI}0"q disables it.
 		// ${CSI}?${TOP};${LEFT};${BOTTOM};${RIGHT}${" erases.
@@ -60,7 +60,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		withTerminalSized(3, 3).enterString("ABCD\033[1\"qE\033[0\"qFGHI\033[1;1;2;10${").assertLinesAre("   ", " E ", "GHI");
 	}
 
-	/** http://vt100.net/docs/vt510-rm/DECCRA */
+	/** <a href="<a">href="http://vt100.net/docs/vt510-</a>rm/DECCRA">...</a> */
 	public void testRectangularCopy() {
 		// "${CSI}${SRC_TOP};${SRC_LEFT};${SRC_BOTTOM};${SRC_RIGHT};${SRC_PAGE};${DST_TOP};${DST_LEFT};${DST_PAGE}\$v"
 		withTerminalSized(7, 3).enterString("ABC\r\nDEF\r\nGHI\033[1;1;2;2;1;2;5;1$v").assertLinesAre("ABC    ", "DEF AB ", "GHI DE ");
@@ -79,7 +79,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		enterString("\033[1;1;2;2;1;2;2;1$v").assertLinesAre(" ABC ", " DAB ", " GDE ", " JK  ", "     ");
 	}
 
-	/** http://vt100.net/docs/vt510-rm/DECCARA */
+	/** <a href="<a">href="http://vt100.net/docs/vt510-r</a>m/DECCARA">...</a> */
 	public void testChangeAttributesInRectangularArea() {
 		final int b = TextStyle.CHARACTER_ATTRIBUTE_BOLD;
 		// "${CSI}${TOP};${LEFT};${BOTTOM};${RIGHT};${ATTRIBUTES}\$r"
@@ -91,7 +91,7 @@ public class RectangularAreasTest extends TerminalTestCase {
 		assertEffectAttributesSet(effectLine(b, b, 0), effectLine(b, b, 0), effectLine(0, 0, 0));
 	}
 
-	/** http://vt100.net/docs/vt510-rm/DECCARA */
+	/** <a href="<a">href="http://vt100.net/docs/vt510-r</a>m/DECCARA">...</a> */
 	public void testReverseAttributesInRectangularArea() {
 		final int b = TextStyle.CHARACTER_ATTRIBUTE_BOLD;
 		final int u = TextStyle.CHARACTER_ATTRIBUTE_UNDERLINE;

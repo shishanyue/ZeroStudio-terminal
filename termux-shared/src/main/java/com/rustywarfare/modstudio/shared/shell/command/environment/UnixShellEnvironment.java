@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 /**
  * Environment for Unix-like systems.
- *
- * https://manpages.debian.org/testing/manpages/environ.7.en.html
- * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html
+ * <p>
+ * <a href="https://manpages.debian.org/testing/manpages/environ.7.en.html">...</a>
+ * <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html">...</a>
  */
 public abstract class UnixShellEnvironment implements IShellEnvironment {
 

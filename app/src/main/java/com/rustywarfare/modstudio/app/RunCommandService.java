@@ -30,8 +30,8 @@ import com.rustywarfare.modstudio.shared.shell.command.ExecutionCommand.Runner;
  * A service that receives {@link RUN_COMMAND_SERVICE#ACTION_RUN_COMMAND} intent from third party apps and
  * plugins that contains info on command execution and forwards the extras to {@link TermuxService}
  * for the actual execution.
- *
- * Check https://github.com.rustywarfare.modstudio/termux-app/wiki/RUN_COMMAND-Intent for more info.
+ * <p>
+ * Check <a href="https://github.com.rustywarfare.modstudio/termux-app/wiki/RUN_COMMAND-Intent">...</a> for more info.
  */
 public class RunCommandService extends Service {
 

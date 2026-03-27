@@ -36,9 +36,9 @@ import java.util.Locale;
 
 /**
  * An activity to edit or view text based on config passed as {@link TextIOInfo}.
- *
+ * <p>
  * Add Following to `AndroidManifest.xml` to use in an app:
- *
+ * <p>
  * {@code ` <activity android:name="com.rustywarfare.modstudio.shared.activities.TextIOActivity" android:theme="@style/Theme.AppCompat.TermuxTextIOActivity" />` }
  */
 public class TextIOActivity extends AppCompatActivity {

@@ -27,7 +27,7 @@ package com.rustywarfare.modstudio.shared.file.filesystem;
 
 /**
  * Container for device/inode to uniquely identify file.
- * https://cs.android.com/android/platform/superproject/+/android-11.0.0_r3:libcore/ojluni/src/main/java/sun/nio/fs/UnixFileKey.java
+ * <a href="https://cs.android.com/android/platform/superproject/+/android-11.0.0_r3:libcore/ojluni/src/main/java/sun/nio/fs/UnixFileKey.java">...</a>
  */
 
 public class FileKey {
@@ -41,8 +41,8 @@ public class FileKey {
 
     @Override
     public int hashCode() {
-        return (int)(st_dev ^ (st_dev >>> 32)) +
-            (int)(st_ino ^ (st_ino >>> 32));
+        return Long.hashCode(st_dev) +
+            Long.hashCode(st_ino);
     }
 
     @Override

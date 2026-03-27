@@ -43,7 +43,7 @@ import io.noties.markwon.recycler.SimpleEntry;
  * and
  * {@code `<receiver android:name="com.rustywarfare.modstudio.shared.activities.ReportActivity$ReportActivityBroadcastReceiver"  android:exported="false" />` }
  * Receiver **must not** be `exported="true"`!!!
- *
+ * <p>
  * Also make an incremental call to {@link #deleteReportInfoFilesOlderThanXDays(Context, int, boolean)}
  * in the app to cleanup cached files.
  */
@@ -316,7 +316,7 @@ public class ReportActivity extends AppCompatActivity {
     /**
      * Get content and delete intents for the {@link ReportActivity} that can be used to start it
      * and do cleanup.
-     *
+     * <p>
      * If {@link ReportInfo} size is too large, then a TransactionTooLargeException will be thrown
      * so its object may be saved to a file in the {@link Context#getCacheDir()}. Then when activity
      * starts, its read back and the file is deleted in {@link #onDestroy()}.
@@ -431,12 +431,12 @@ public class ReportActivity extends AppCompatActivity {
         if (isSynchronous) {
             deleteReportInfoFilesOlderThanXDaysInner(context, days);
         } else {
-            new Thread() { public void run() {
+            new Thread(() -> {
                 Error error = deleteReportInfoFilesOlderThanXDaysInner(context, days);
                 if (error != null) {
                     Logger.logErrorExtended(LOG_TAG, error.toString());
                 }
-            }}.start();
+            }).start();
         }
     }
 

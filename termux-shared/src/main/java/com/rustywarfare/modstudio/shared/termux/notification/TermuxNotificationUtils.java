@@ -18,9 +18,9 @@ import com.rustywarfare.modstudio.shared.termux.TermuxConstants;
 public class TermuxNotificationUtils {
     /**
      * Try to get the next unique notification id that isn't already being used by the app.
-     *
+     * <p>
      * Termux app and its plugin must use unique notification ids from the same pool due to usage of android:sharedUserId.
-     * https://commonsware.com/blog/2017/06/07/jobscheduler-job-ids-libraries.html
+     * <a href="https://commonsware.com/blog/2017/06/07/jobscheduler-job-ids-libraries.html">...</a>
      *
      * @param context The {@link Context} for operations.
      * @return Returns the notification id that should be safe to use.

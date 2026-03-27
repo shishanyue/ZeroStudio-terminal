@@ -11,7 +11,7 @@ import com.rustywarfare.modstudio.shared.logger.Logger;
 
 /**
  * Manager for an AF_UNIX/SOCK_STREAM local server.
- *
+ * <p>
  * Usage:
  * 1. Implement the {@link ILocalSocketManager} that will receive call backs from the server including
  *    when client connects via {@link ILocalSocketManager#onClientAccepted(LocalSocketManager, LocalClientSocket)}.
@@ -178,7 +178,7 @@ public class LocalSocketManager {
      * for example because fewer bytes are actually available right now (maybe because we were close
      * to end-of-file, or because we are reading from a pipe), or because read() was interrupted by
      * a signal. On error, the {@link JniResult#errno} and {@link JniResult#errmsg} will be set.
-     *
+     * <p>
      * If while reading the deadline elapses but all the data has not been read, the call will fail.
      *
      * @param serverTitle The server title used for logging and errors.
@@ -202,7 +202,7 @@ public class LocalSocketManager {
     /**
      * Attempts to send data buffer to the file descriptor. On error, the {@link JniResult#errno} and
      * {@link JniResult#errmsg} will be set.
-     *
+     * <p>
      * If while sending the deadline elapses but all the data has not been sent, the call will fail.
      *
      * @param serverTitle The server title used for logging and errors.

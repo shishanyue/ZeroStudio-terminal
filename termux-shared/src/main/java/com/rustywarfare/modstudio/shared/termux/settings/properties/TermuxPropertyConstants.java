@@ -81,7 +81,7 @@ import java.util.*;
  * apps as is instead of copying constants to random classes. The 3rd party apps can also import
  * it for interacting with termux apps. If changes are made to this file, increment the version number
  * and add an entry in the Changelog section above.
- *
+ * <p>
  * The properties are loaded from the first file found at
  * {@link TermuxConstants#TERMUX_PROPERTIES_PRIMARY_FILE_PATH} or
  * {@link TermuxConstants#TERMUX_PROPERTIES_SECONDARY_FILE_PATH}

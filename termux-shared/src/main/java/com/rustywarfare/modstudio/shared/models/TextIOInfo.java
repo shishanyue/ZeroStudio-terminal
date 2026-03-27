@@ -22,17 +22,17 @@ public class TextIOInfo implements Serializable {
 
     /**
      * Explicitly define `serialVersionUID` to prevent exceptions on deserialization.
-     *
+     * <p> <p>
      * Like when calling `Bundle.getSerializable()` on Android.
      * `android.os.BadParcelableException: Parcelable encountered IOException reading a Serializable object` (name = <class_name>)
      * `java.io.InvalidClassException: <class_name>; local class incompatible`
-     *
+     * <p> <p>
      * The `@Keep` annotation is necessary to prevent the field from being removed by proguard when
      * app is compiled, even if its kept during library compilation.
-     *
+     * <p> <p>
      * **See Also:**
-     * - https://docs.oracle.com/javase/8/docs/platform/serialization/spec/version.html#a6678
-     * - https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html#a4100
+     * - <a href="<a">href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/version.h</a>tml#a6678">...</a>
+     * - <a href="<a">href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.h</a>tml#a4100">...</a>
      */
     @Keep
     private static final long serialVersionUID = 1L;

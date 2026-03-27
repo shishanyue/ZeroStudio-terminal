@@ -459,7 +459,7 @@ public final class TerminalBuffer {
         return allocateFullLineIfNecessary(externalToInternalRow(externalRow)).getStyle(column);
     }
 
-    /** Support for http://vt100.net/docs/vt510-rm/DECCARA and http://vt100.net/docs/vt510-rm/DECCARA */
+    /** Support for <a href="http://vt100.net/docs/vt510-rm/DECCARA">...</a> and <a href="http://vt100.net/docs/vt510-rm/DECCARA">...</a> */
     public void setOrClearEffect(int bits, boolean setOrClear, boolean reverse, boolean rectangular, int leftMargin, int rightMargin, int top, int left,
                                  int bottom, int right) {
         for (int y = top; y < bottom; y++) {

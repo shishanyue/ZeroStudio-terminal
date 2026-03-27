@@ -2,14 +2,14 @@ package com.rustywarfare.modstudio.terminal;
 
 /**
  * Implementation of wcwidth(3) for Unicode 15.
- *
- * Implementation from https://github.com/jquast/wcwidth but we return 0 for unprintable characters.
- *
+ * <p>
+ * Implementation from <a href="https://github.com/jquast/wcwidth">...</a> but we return 0 for unprintable characters.
+ * <p>
  * IMPORTANT:
  * Must be kept in sync with the following:
- * https://github.com.rustywarfare.modstudio/wcwidth
- * https://github.com.rustywarfare.modstudio/libandroid-support
- * https://github.com.rustywarfare.modstudio/termux-packages/tree/master/packages/libandroid-support
+ * <a href="https://github.com.rustywarfare.modstudio/wcwidth">...</a>
+ * <a href="https://github.com.rustywarfare.modstudio/libandroid-support">...</a>
+ * <a href="https://github.com.rustywarfare.modstudio/termux-packages/tree/master/packages/libandroid-support">...</a>
  */
 public final class WcWidth {
 

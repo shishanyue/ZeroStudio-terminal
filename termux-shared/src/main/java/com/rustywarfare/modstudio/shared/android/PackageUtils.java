@@ -126,10 +126,10 @@ public class PackageUtils {
 
     /**
      * Get the {@link PackageInfo} for the package associated with the {@code packageName}.
-     *
+     * <p>
      * Also check {@link #isAppInstalled(Context, String, String) if targetting targeting sdk
      * `30` (android `11`) since {@link PackageManager.NameNotFoundException} may be thrown.
-     *
+     * <p>
      * @param context The {@link Context} for operations.
      * @param packageName The package name of the package.
      * @param flags The flags to pass to {@link PackageManager#getPackageInfo(String, int)}.
@@ -160,10 +160,10 @@ public class PackageUtils {
 
     /**
      * Get the {@link ApplicationInfo} for the {@code packageName}.
-     *
+     * <p>
      * Also check {@link #isAppInstalled(Context, String, String) if targetting targeting sdk
      * `30` (android `11`) since {@link PackageManager.NameNotFoundException} may be thrown.
-     *
+     * <p>
      * @param context The {@link Context} for operations.
      * @param packageName The package name of the package.
      * @param flags The flags to pass to {@link PackageManager#getApplicationInfo(String, int)}.
@@ -198,16 +198,16 @@ public class PackageUtils {
 
     /**
      * Get the {@code seInfo} {@link Field} of the {@link ApplicationInfo} class.
-     *
+     * <p>
      * String retrieved from the seinfo tag found in selinux policy. This value can be set through
      * the mac_permissions.xml policy construct. This value is used for setting an SELinux security
      * context on the process as well as its data directory.
-     *
-     * https://cs.android.com/android/platform/superproject/+/android-7.1.0_r1:frameworks/base/core/java/android/content/pm/ApplicationInfo.java;l=609
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/core/java/android/content/pm/ApplicationInfo.java;l=981
-     * https://cs.android.com/android/platform/superproject/+/android-7.0.0_r1:frameworks/base/services/core/java/com/android/server/pm/SELinuxMMAC.java;l=282
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/pm/SELinuxMMAC.java;l=375
-     * https://cs.android.com/android/_/android/platform/frameworks/base/+/be0b8896d1bc385d4c8fb54c21929745935dcbea
+     * <p>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-7.1.0_r1:frameworks/base/core/java/android/content/pm/ApplicationInfo.java;l=609">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/core/java/android/content/pm/ApplicationInfo.java;l=981">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-7.0.0_r1:frameworks/base/services/core/java/com/android/server/pm/SELinuxMMAC.java;l=282">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/pm/SELinuxMMAC.java;l=375">...</a>
+     * <a href="https://cs.android.com/android/_/android/platform/frameworks/base/+/be0b8896d1bc385d4c8fb54c21929745935dcbea">...</a>
      *
      * @param applicationInfo The {@link ApplicationInfo} for the package.
      * @return Returns the selinux info or {@code null} if an exception was raised.
@@ -226,7 +226,7 @@ public class PackageUtils {
 
     /**
      * Get the {@code seInfoUser} {@link Field} of the {@link ApplicationInfo} class.
-     *
+     * <p>
      * Also check {@link #getApplicationInfoSeInfoForPackage(ApplicationInfo)}.
      *
      * @param applicationInfo The {@link ApplicationInfo} for the package.
@@ -669,7 +669,7 @@ public class PackageUtils {
     /**
      * Check if app is installed and enabled. This can be used by external apps that don't
      * share `sharedUserId` with the an app.
-     *
+     * <p>
      * If your third-party app is targeting sdk `30` (android `11`), then it needs to add package
      * name to the `queries` element or request `QUERY_ALL_PACKAGES` permission in its
      * `AndroidManifest.xml`. Otherwise it will get `PackageSetting{...... package_name/......} BLOCKED`
@@ -678,13 +678,13 @@ public class PackageUtils {
      * Check [package-visibility](https://developer.android.com/training/basics/intents/package-visibility#package-name),
      * `QUERY_ALL_PACKAGES` [googleplay policy](https://support.google.com/googleplay/android-developer/answer/10158779
      * and this [article](https://medium.com/androiddevelopers/working-with-package-visibility-dc252829de2d) for more info.
-     *
+     * <p>
      * {@code
      * <manifest
      *     <queries>
      *         <package android:name="com.rustywarfare.modstudio" />
      *    </queries>
-     *
+     * <p>
      *    <application
      *        ....
      *    </application>

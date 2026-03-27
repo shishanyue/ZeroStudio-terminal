@@ -143,7 +143,7 @@ public class TermuxUtils {
     /**
      * Check if Termux app is installed and enabled. This can be used by external apps that don't
      * share `sharedUserId` with the Termux app.
-     *
+     * <p>
      * If your third-party app is targeting sdk `30` (android `11`), then it needs to add `com.rustywarfare.modstudio`
      * package to the `queries` element or request `QUERY_ALL_PACKAGES` permission in its
      * `AndroidManifest.xml`. Otherwise it will get `PackageSetting{...... com.rustywarfare.modstudio/......} BLOCKED`
@@ -151,7 +151,7 @@ public class TermuxUtils {
      * Check [package-visibility](https://developer.android.com/training/basics/intents/package-visibility#package-name),
      * `QUERY_ALL_PACKAGES` [googleplay policy](https://support.google.com/googleplay/android-developer/answer/10158779
      * and this [article](https://medium.com/androiddevelopers/working-with-package-visibility-dc252829de2d) for more info.
-     *
+     * <p>
      * {@code
      * <manifest
      *     <queries>
@@ -183,7 +183,7 @@ public class TermuxUtils {
     /**
      * Check if Termux app is installed and accessible. This can only be used by apps that share
      * `sharedUserId` with the Termux app.
-     *
+     * <p>
      * This is done by checking if first checking if app is installed and enabled and then if
      * {@code currentPackageContext} can be used to get the {@link Context} of the app with
      * {@link TermuxConstants#TERMUX_PACKAGE_NAME} and then if
@@ -225,7 +225,7 @@ public class TermuxUtils {
      * Get a field value from the {@link TERMUX_APP#BUILD_CONFIG_CLASS_NAME} class of the Termux app
      * APK installed on the device.
      * This can only be used by apps that share `sharedUserId` with the Termux app.
-     *
+     * <p>
      * This is a wrapper for {@link #getTermuxAppAPKClassField(Context, String, String)}.
      *
      * @param currentPackageContext The context of current package.
@@ -241,14 +241,14 @@ public class TermuxUtils {
     /**
      * Get a field value from a class of the Termux app APK installed on the device.
      * This can only be used by apps that share `sharedUserId` with the Termux app.
-     *
+     * <p>
      * This is done by getting first getting termux app package context and then getting in class
      * loader (instead of current app's) that contains termux app class info, and then using that to
      * load the required class and then getting required field from it.
-     *
+     * <p>
      * Note that the value returned is from the APK file and not the current value loaded in Termux
      * app process, so only default values will be returned.
-     *
+     * <p>
      * Trying to access {@code null} fields will result in {@link NoSuchFieldException}.
      *
      * @param currentPackageContext The context of current package.
@@ -322,11 +322,11 @@ public class TermuxUtils {
     /**
      * Get a markdown {@link String} for the apps info of termux app, its installed plugin apps or
      * external apps that called a Termux API depending on {@link AppInfoMode} passed.
-     *
+     * <p>
      * Also check {@link PackageUtils#isAppInstalled(Context, String, String) if targetting targeting
      * sdk `30` (android `11`) since {@link PackageManager.NameNotFoundException} may be thrown while
      * getting info of {@code callingPackageName} app.
-     *
+     * <p>
      * @param currentPackageContext The context of current package.
      * @param appInfoMode The {@link AppInfoMode} to decide the app info required.
      * @param callingPackageName The optional package name for a plugin or external app.
@@ -563,7 +563,7 @@ public class TermuxUtils {
 
     /**
      * Get a markdown {@link String} for APT info of the app.
-     *
+     * <p>
      * This will take a few seconds to run due to running {@code apt update} command.
      *
      * @param context The context for operations.

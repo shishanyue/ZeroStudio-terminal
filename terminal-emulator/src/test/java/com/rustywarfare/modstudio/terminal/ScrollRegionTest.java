@@ -3,7 +3,7 @@ package com.rustywarfare.modstudio.terminal;
 /**
  * ${CSI}${top};${bottom}r" - set Scrolling Region [top;bottom] (default = full size of window) (DECSTBM).
  * <p/>
- * "DECSTBM moves the cursor to column 1, line 1 of the page" (http://www.vt100.net/docs/vt510-rm/DECSTBM).
+ * "DECSTBM moves the cursor to column 1, line 1 of the page" (<a href="http://www.vt100.net/docs/vt510-rm/DECSTBM">...</a>).
  */
 public class ScrollRegionTest extends TerminalTestCase {
 
@@ -117,7 +117,7 @@ public class ScrollRegionTest extends TerminalTestCase {
 		assertLinesAre("1 ", "2 ", "3 ", "QQ", "YY");
 	}
 
-	/** See https://github.com.rustywarfare.modstudio/termux-app/issues/1340 */
+	/** See <a href="https://github.com.rustywarfare.modstudio/termux-app/issues/1340">...</a> */
 	public void testScrollRegionDoesNotLimitCursorMovement() {
 		withTerminalSized(6, 4)
 			.enterString("\033[4;7r\033[3;1Haaa\033[Axxx")

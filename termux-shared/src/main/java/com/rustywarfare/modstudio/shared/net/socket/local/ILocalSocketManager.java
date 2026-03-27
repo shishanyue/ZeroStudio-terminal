@@ -27,7 +27,7 @@ public interface ILocalSocketManager {
      * or {@link LocalClientSocket}. The server will automatically close the client socket
      * with a call to {@link LocalClientSocket#closeClientSocket(boolean)} if the error occurred due
      * to the client.
-     *
+     * <p>
      * The {@link LocalClientSocket#getPeerCred()} can be used to get the {@link PeerCred} object
      * containing info for the connected client/peer.
      *
@@ -43,7 +43,7 @@ public interface ILocalSocketManager {
      * This is called if a {@link LocalServerSocket} connects to the server which **does not** have
      * the server app's user id or root user id. The server will automatically close the client socket
      * with a call to {@link LocalClientSocket#closeClientSocket(boolean)}.
-     *
+     * <p>
      * The {@link LocalClientSocket#getPeerCred()} can be used to get the {@link PeerCred} object
      * containing info for the connected client/peer.
      *
@@ -59,7 +59,7 @@ public interface ILocalSocketManager {
      * the server app's user id or root user id. It is the responsibility of the interface
      * implementation to close the client socket with a call to
      * {@link LocalClientSocket#closeClientSocket(boolean)} once its done processing.
-     *
+     * <p>
      * The {@link LocalClientSocket#getPeerCred()} can be used to get the {@link PeerCred} object
      * containing info for the connected client/peer.
      *

@@ -179,9 +179,7 @@ public abstract class ArgumentTokenizer {
         }
         // Format each argument if we've been told to stringify them
         if (stringify) {
-            for (int i = 0; i < argList.size(); i++) {
-                argList.set(i, "\"" + _escapeQuotesAndBackslashes(argList.get(i)) + "\"");
-            }
+            argList.replaceAll(s -> "\"" + _escapeQuotesAndBackslashes(s) + "\"");
         }
         return argList;
     }

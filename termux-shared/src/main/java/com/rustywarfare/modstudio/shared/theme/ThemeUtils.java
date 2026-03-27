@@ -16,7 +16,7 @@ public class ThemeUtils {
 
     /**
      * Will return true if system has enabled night mode.
-     * https://developer.android.com/guide/topics/resources/providing-resources#NightQualifier
+     * <a href="https://developer.android.com/guide/topics/resources/providing-resources#NightQualifier">...</a>
      */
     public static boolean isNightModeEnabled(Context context) {
         if (context == null) return false;

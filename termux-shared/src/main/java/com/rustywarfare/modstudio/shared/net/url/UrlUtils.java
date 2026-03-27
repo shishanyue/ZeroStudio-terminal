@@ -98,7 +98,7 @@ public class UrlUtils {
         }
     }
 
-    /** Remove "https://www.", "https://", "www.", etc */
+    /** Remove "<a href="https://www">...</a>.", "https://", "www.", etc */
     public static String removeProtocol(String urlString) {
         if (urlString == null) return null;
         return urlString.replaceFirst("^(http[s]?://www\\.|http[s]?://|www\\.)","");

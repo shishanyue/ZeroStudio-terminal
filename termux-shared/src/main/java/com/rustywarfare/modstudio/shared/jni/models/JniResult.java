@@ -8,9 +8,9 @@ import com.rustywarfare.modstudio.shared.logger.Logger;
 /**
  * A class that can be used to return result for JNI calls with support for multiple fields to easily
  * return success and error states.
- *
- * https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
- * https://developer.android.com/training/articles/perf-jni
+ * <p>
+ * <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html">...</a>
+ * <a href="https://developer.android.com/training/articles/perf-jni">...</a>
  */
 @Keep
 public class JniResult {
@@ -24,16 +24,16 @@ public class JniResult {
     /**
      * The errno value for any failed native system or library calls if {@link #retval} does not equal 0.
      * This should be 0 if no errno was set.
-     *
-     * https://manpages.debian.org/testing/manpages-dev/errno.3.en.html
+     * <p>
+     * <a href="https://manpages.debian.org/testing/manpages-dev/errno.3.en.html">...</a>
      */
     public final int errno;
 
     /**
      * The error message for the failure if {@link #retval} does not equal 0.
      * The message will contain errno message returned by strerror() if errno was set.
-     *
-     * https://manpages.debian.org/testing/manpages-dev/strerror.3.en.html
+     * <p>
+     * <a href="https://manpages.debian.org/testing/manpages-dev/strerror.3.en.html">...</a>
      */
     public final String errmsg;
 

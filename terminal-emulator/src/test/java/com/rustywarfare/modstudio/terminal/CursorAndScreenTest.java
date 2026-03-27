@@ -97,7 +97,7 @@ public class CursorAndScreenTest extends TerminalTestCase {
 		withTerminalSized(5, 2).enterString("n枝ce").enterString("\033[G\033[4ha").assertLinesAre("an枝c", "     ");
 	}
 
-	/** HPA—Horizontal Position Absolute (http://www.vt100.net/docs/vt510-rm/HPA) */
+	/** HPA—Horizontal Position Absolute (<a href="http://www.vt100.net/docs/vt510-rm/HPA">...</a>) */
 	public void testCursorHorizontalPositionAbsolute() {
 		withTerminalSized(4, 4).enterString("ABC\033[`").assertCursorAt(0, 0);
 		enterString("\033[1`").assertCursorAt(0, 0).enterString("\033[2`").assertCursorAt(0, 1);
@@ -174,11 +174,11 @@ public class CursorAndScreenTest extends TerminalTestCase {
 	}
 
 	/**
-	 * Test interactions between the cursor overflow bit and various escape sequences.
-	 * <p/>
-	 * Adapted from hterm:
-	 * https://chromium.googlesource.com/chromiumos/platform/assets/+/2337afa5c063127d5ce40ec7fec9b602d096df86%5E%21/#F2
-	 */
+     * Test interactions between the cursor overflow bit and various escape sequences.
+     * <p/>
+     * Adapted from hterm:
+     * <a href="https://chromium.googlesource.com/chromiumos/platform/assets/+/2337afa5c063127d5ce40ec7fec9b602d096df86%5E%21/#F2">...</a>
+     */
 	public void testClearingOfAutowrap() {
 		// Fill a row with the last hyphen wrong, then run a command that
 		// modifies the screen, then add a hyphen. The wrap bit should be

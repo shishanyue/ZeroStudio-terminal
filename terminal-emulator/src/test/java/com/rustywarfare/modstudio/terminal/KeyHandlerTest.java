@@ -25,7 +25,7 @@ public class KeyHandlerTest extends TestCase {
 		}
 	}
 
-	/** See http://pubs.opengroup.org/onlinepubs/7990989799/xcurses/terminfo.html */
+	/** See <a href="http://pubs.opengroup.org/onlinepubs/7990989799/xcurses/terminfo.html">...</a> */
 	public void testTermCaps() {
 		// Backspace.
 		assertKeysEquals("\u007f", KeyHandler.getCodeFromTermcap("kb", false, false));

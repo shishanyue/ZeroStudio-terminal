@@ -21,14 +21,14 @@ public class ShellEnvironmentUtils {
 
     /**
      * Convert environment {@link HashMap} to `environ` {@link List <String>}.
-     *
+     * <p>
      * The items in the environ will have the format `name=value`.
-     *
+     * <p>
      * Check {@link #isValidEnvironmentVariableName(String)} and {@link #isValidEnvironmentVariableValue(String)}
      * for valid variable names and values.
-     *
-     * https://manpages.debian.org/testing/manpages/environ.7.en.html
-     * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html
+     * <p>
+     * <a href="https://manpages.debian.org/testing/manpages/environ.7.en.html">...</a>
+     * <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html">...</a>
      */
     @NonNull
     public static List<String> convertEnvironmentToEnviron(@NonNull HashMap<String, String> environmentMap) {
@@ -53,22 +53,22 @@ public class ShellEnvironmentUtils {
 
     /**
      * Convert environment {@link HashMap} to `.env` file {@link String}.
-     *
+     * <p>
      * The items in the `.env` file have the format `export name="value"`.
-     *
+     * <p>
      * If the {@link ShellEnvironmentVariable#escaped} is set to {@code true}, then
      * {@link ShellEnvironmentVariable#value} will be considered to be a literal value that has
      * already been escaped by the caller, otherwise all the `"`\$` in the value will be escaped
      * with `a backslash `\`, like `\"`. Note that if `$` is escaped and if its part of variable,
      * then variable expansion will not happen if `.env` file is sourced.
-     *
+     * <p>
      * The `\` at the end of a value line means line continuation. Value can contain newline characters.
-     *
+     * <p>
      * Check {@link #isValidEnvironmentVariableName(String)} and {@link #isValidEnvironmentVariableValue(String)}
      * for valid variable names and values.
-     *
-     * https://github.com/ko1nksm/shdotenv#env-file-syntax
-     * https://github.com/ko1nksm/shdotenv/blob/main/docs/specification.md
+     * <p>
+     * <a href="https://github.com/ko1nksm/shdotenv#env-file-syntax">...</a>
+     * <a href="https://github.com/ko1nksm/shdotenv/blob/main/docs/specification.md">...</a>
      */
     @NonNull
     public static String convertEnvironmentToDotEnvFile(@NonNull List<ShellEnvironmentVariable> environmentList) {
@@ -100,7 +100,7 @@ public class ShellEnvironmentUtils {
     /**
      * Check if environment variable name and value pair is valid. Errors will be logged if
      * {@code logErrors} is {@code true}.
-     *
+     * <p>
      * Check {@link #isValidEnvironmentVariableName(String)} and {@link #isValidEnvironmentVariableValue(String)}
      * for valid variable names and values.
      */

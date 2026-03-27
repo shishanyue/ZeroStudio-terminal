@@ -34,12 +34,12 @@ import java.util.List;
  * {@link LocalServerSocket} receives android activity manager (am) commands from {@link LocalClientSocket}
  * and runs them with termux-am-library. It would normally only allow processes belonging to the
  * server app's user and root user to connect to it.
- *
+ * <p>
  * The client must send the am command as a string without the initial "am" arg on its output stream
  * and then wait for the result on its input stream. The result of the execution or error is sent
  * back in the format `exit_code\0stdout\0stderr\0` where `\0` represents a null character.
  * Check termux/termux-am-socket for implementation of a native c client.
- *
+ * <p>
  * Usage:
  * 1. Optionally extend {@link AmSocketServerClient}, the implementation for
  *    {@link ILocalSocketManager} that will receive call backs from the server including
@@ -51,11 +51,11 @@ import java.util.List;
  *    instance returned.
  * 4. Stop server if needed with a call to {@link LocalSocketManager#stop()} on the
  *    {@link LocalSocketManager} instance returned by start call.
- *
- * https://github.com.rustywarfare.modstudio/termux-am-library/blob/main/termux-am-library/src/main/java/com.rustywarfare.modstudio/am/Am.java
- * https://github.com.rustywarfare.modstudio/termux-am-socket
- * https://developer.android.com/studio/command-line/adb#am
- * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/ActivityManagerShellCommand.java
+ * <p>
+ * <a href="https://github.com.rustywarfare.modstudio/termux-am-library/blob/main/termux-am-library/src/main/java/com.rustywarfare.modstudio/am/Am.java">...</a>
+ * <a href="https://github.com.rustywarfare.modstudio/termux-am-socket">...</a>
+ * <a href="https://developer.android.com/studio/command-line/adb#am">...</a>
+ * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r32:frameworks/base/services/core/java/com/android/server/am/ActivityManagerShellCommand.java">...</a>
  */
 public class AmSocketServer {
 

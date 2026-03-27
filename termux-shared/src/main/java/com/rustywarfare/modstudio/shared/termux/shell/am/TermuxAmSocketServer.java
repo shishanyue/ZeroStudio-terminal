@@ -24,37 +24,37 @@ import com.rustywarfare.modstudio.shared.termux.shell.command.environment.Termux
 
 /**
  * A wrapper for {@link AmSocketServer} for termux-app usage.
- *
+ * <p>
  * The static {@link #termuxAmSocketServer} variable stores the {@link LocalSocketManager} for the
  * {@link AmSocketServer}.
- *
+ * <p>
  * The {@link TermuxAmSocketServerClient} extends the {@link AmSocketServer.AmSocketServerClient}
  * class to also show plugin error notifications for errors and disallowed client connections in
  * addition to logging the messages to logcat, which are only logged by {@link LocalSocketManagerClientBase}
  * if log level is debug or higher for privacy issues.
- *
+ * <p>
  * It uses a filesystem socket server with the socket file at
  * {@link TermuxConstants.TERMUX_APP#TERMUX_AM_SOCKET_FILE_PATH}. It would normally only allow
  * processes belonging to the termux user and root user to connect to it. If commands are sent by the
  * root user, then the am commands executed will be run as the termux user and its permissions,
  * capabilities and selinux context instead of root.
- *
+ * <p>
  * The `$PREFIX/bin/termux-am` client connects to the server via `$PREFIX/bin/termux-am-socket` to
  * run the am commands. It provides similar functionality to "$PREFIX/bin/am"
  * (and "/system/bin/am"), but should be faster since it does not require starting a dalvik vm for
  * every command as done by "am" via termux/TermuxAm.
- *
+ * <p>
  * The server is started by termux-app Application class but is not started if
  * {@link TermuxPropertyConstants#KEY_RUN_TERMUX_AM_SOCKET_SERVER} is `false` which can be done by
  * adding the prop with value "false" to the "~/.termux/termux.properties" file. Changes
  * require termux-app to be force stopped and restarted.
- *
+ * <p>
  * The current state of the server can be checked with the
  * {@link TermuxAppShellEnvironment#ENV_TERMUX_APP__AM_SOCKET_SERVER_ENABLED} env variable, which is exported
  * for all shell sessions and tasks.
- *
- * https://github.com.rustywarfare.modstudio/termux-am-socket
- * https://github.com.rustywarfare.modstudio/TermuxAm
+ * <p>
+ * <a href="https://github.com.rustywarfare.modstudio/termux-am-socket">...</a>
+ * <a href="https://github.com.rustywarfare.modstudio/TermuxAm">...</a>
  */
 public class TermuxAmSocketServer {
 

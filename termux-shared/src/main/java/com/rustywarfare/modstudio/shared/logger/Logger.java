@@ -34,12 +34,12 @@ public class Logger {
     /**
      * The maximum size of the log entry payload that can be written to the logger. An attempt to
      * write more than this amount will result in a truncated log entry.
-     *
+     * <p>
      * The limit is 4068 but this includes log tag and log level prefix "D/" before log tag and ": "
      * suffix after it.
-     *
+     * <p>
      * #define LOGGER_ENTRY_MAX_PAYLOAD 4068
-     * https://cs.android.com/android/_/android/platform/system/core/+/android10-release:liblog/include/log/log_read.h;l=127
+     * <a href="https://cs.android.com/android/_/android/platform/system/core/+/android10-release:liblog/include/log/log_read.h;l=127">...</a>
      */
     public static final int LOGGER_ENTRY_MAX_PAYLOAD = 4068; // 4068 bytes
 
@@ -449,7 +449,7 @@ public class Logger {
 
     /**
      * IllegalArgumentException will be thrown if tag.length() > 23 for Nougat (7.0) and prior releases.
-     * https://developer.android.com/reference/android/util/Log#isLoggable(java.lang.String,%20int) */
+     * <a href="https://developer.android.com/reference/android/util/Log#isLoggable(java.lang.String,%20int)">...</a> */
     public static void setDefaultLogTag(@NonNull String defaultLogTag) {
         DEFAULT_LOG_TAG = defaultLogTag.length() >= 23 ? defaultLogTag.substring(0, 22) : defaultLogTag;
     }
@@ -475,8 +475,8 @@ public class Logger {
     /** The colon character ":" must not exist inside the tag, otherwise the `logcat` command
      * filterspecs arguments `<tag>[:priority]` will not work and will throw `Invalid filter expression`
      * error.
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:system/logging/liblog/logprint.cpp;l=363
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:system/logging/logcat/logcat.cpp;l=884
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:system/logging/liblog/logprint.cpp;l=363">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:system/logging/logcat/logcat.cpp;l=884">...</a>
      * */
     public static String getFullTag(String tag) {
         if (DEFAULT_LOG_TAG.equals(tag))

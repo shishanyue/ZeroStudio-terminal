@@ -13,11 +13,11 @@ import com.rustywarfare.modstudio.shared.shell.command.runner.app.AppShell;
 
 /**
  * Utils for phantom processes added in android 12.
- *
- * https://github.com.rustywarfare.modstudio/termux-app/issues/2366
- * https://issuetracker.google.com/u/1/issues/205156966#comment28
- * https://cs.android.com/android/_/android/platform/frameworks/base/+/09dcdad5
- * https://github.com/agnostic-apollo/Android-Docs/tree/master/ocs/apps/processes/phantom-cached-and-empty-processes.md
+ * <p>
+ * <a href="https://github.com.rustywarfare.modstudio/termux-app/issues/2366">...</a>
+ * <a href="https://issuetracker.google.com/u/1/issues/205156966#comment28">...</a>
+ * <a href="https://cs.android.com/android/_/android/platform/frameworks/base/+/09dcdad5">...</a>
+ * <a href="https://github.com/agnostic-apollo/Android-Docs/tree/master/ocs/apps/processes/phantom-cached-and-empty-processes.md">...</a>
  */
 public class PhantomProcessUtils {
 
@@ -36,9 +36,9 @@ public class PhantomProcessUtils {
      * Maximum number of allowed phantom processes. It is also used as the label for the currently
      * enforced ActivityManagerConstants MAX_PHANTOM_PROCESSES value in the `dumpsys activity settings`
      * output.
-     *
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/services/core/java/com/android/server/am/ActivityManagerConstants.java;l=574
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/services/core/java/com/android/server/am/ActivityManagerConstants.java;l=172
+     * <p>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/services/core/java/com/android/server/am/ActivityManagerConstants.java;l=574">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/services/core/java/com/android/server/am/ActivityManagerConstants.java;l=172">...</a>
      */
     public static final String KEY_MAX_PHANTOM_PROCESSES = "max_phantom_processes";
 
@@ -46,10 +46,10 @@ public class PhantomProcessUtils {
      * Whether or not syncs (bulk set operations) for DeviceConfig are disabled currently. The value
      * is boolean (1 or 0). The value '1' means that DeviceConfig#setProperties(DeviceConfig.Properties)
      * will return {@code false}.
-     *
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/core/java/android/provider/DeviceConfig.java
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/SettingsProvider.java;l=1186
-     * https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/SettingsProvider.java;l=1142
+     * <p>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/core/java/android/provider/DeviceConfig.java">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/SettingsProvider.java;l=1186">...</a>
+     * <a href="https://cs.android.com/android/platform/superproject/+/android-12.0.0_r4:frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/SettingsProvider.java;l=1142">...</a>
      */
     public static final String SETTINGS_GLOBAL_DEVICE_CONFIG_SYNC_DISABLED = "device_config_sync_disabled";
 

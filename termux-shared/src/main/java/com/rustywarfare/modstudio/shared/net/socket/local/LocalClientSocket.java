@@ -106,11 +106,11 @@ public class LocalClientSocket implements Closeable {
      * for example because fewer bytes are actually available right now (maybe because we were close
      * to end-of-file, or because we are reading from a pipe), or because read() was interrupted by
      * a signal.
-     *
+     * <p>
      * If while reading the {@link #mCreationTime} + the milliseconds returned by
      * {@link LocalSocketRunConfig#getDeadline()} elapses but all the data has not been read, an
      * error would be returned.
-     *
+     * <p>
      * This is a wrapper for {@link LocalSocketManager#read(String, int, byte[], long)}, which can
      * be called instead if you want to get access to errno int value instead of {@link JniResult}
      * error {@link String}.
@@ -142,11 +142,11 @@ public class LocalClientSocket implements Closeable {
 
     /**
      * Attempts to send data buffer to the file descriptor.
-     *
+     * <p>
      * If while sending the {@link #mCreationTime} + the milliseconds returned by
      * {@link LocalSocketRunConfig#getDeadline()} elapses but all the data has not been sent, an
      * error would be returned.
-     *
+     * <p>
      * This is a wrapper for {@link LocalSocketManager#send(String, int, byte[], long)}, which can
      * be called instead if you want to get access to errno int value instead of {@link JniResult}
      * error {@link String}.
@@ -175,7 +175,7 @@ public class LocalClientSocket implements Closeable {
     /**
      * Attempts to read all the bytes available on {@link SocketInputStream} and appends them to
      * {@code data} {@link StringBuilder}.
-     *
+     * <p>
      * This is a wrapper for {@link #read(byte[], MutableInt)} called via {@link SocketInputStream#read()}.
      *
      * @param data The data {@link StringBuilder} to append the bytes read into.
@@ -214,7 +214,7 @@ public class LocalClientSocket implements Closeable {
 
     /**
      * Attempts to send all the bytes passed to {@link SocketOutputStream} .
-     *
+     * <p>
      * This is a wrapper for {@link #send(byte[])} called via {@link SocketOutputStream#write(int)}.
      *
      * @param data The {@link String} bytes to send.
