@@ -29,7 +29,7 @@ Increase the height of the symbol input toolbar by 20%.
 Input Fluidity: Ensure the terminal's input area supports smooth text entry and pasting. Standard keys like Enter and Space from the soft keyboard must function correctly for Linux commands.
 Stability: The application crashes when creating a new session.：
 FATAL EXCEPTION: main
-Process: android.zero.studio.terminal, PID: 20134
+Process: com.rustywarfare.modstudio, PID: 20134
 java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
 	at jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
 	at jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
@@ -82,7 +82,7 @@ java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
 
 4.确保终端视图区域的输入区可以流畅无阻输入文字，粘贴输入等，比如输入Linux命令，软键盘输入法的回车空格等key都可以正常使用与输入。
 5.新建会话时会崩溃：FATAL EXCEPTION: main
-Process: android.zero.studio.terminal, PID: 20134
+Process: com.rustywarfare.modstudio, PID: 20134
 java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
 	at jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
 	at jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)

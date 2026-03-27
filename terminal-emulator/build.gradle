@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    namespace "android.zero.studio.terminal.emulator"
+    namespace "com.rustywarfare.modstudio.emulator"
 
     compileSdkVersion project.properties.compileSdkVersion.toInteger()
     ndkVersion = System.getenv("JITPACK_NDK_VERSION") ?: project.properties.ndkVersion
@@ -78,7 +78,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.default
-                groupId = 'android.zero.studio.terminal'
+                groupId = 'com.rustywarfare.modstudio'
                 artifactId = 'terminal-emulator'
                 version = '0.118.0'
                 artifact(sourceJar)

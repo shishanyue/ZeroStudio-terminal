@@ -55,7 +55,7 @@
         
         
         <activity
-            android:name="android.zero.studio.terminal.app.terminal.compose.TerminalActivity"
+            android:name="com.rustywarfare.modstudio.app.terminal.compose.TerminalActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTask"
@@ -71,7 +71,7 @@
 
 
         <service
-            android:name="android.zero.studio.terminal.app.terminal.compose.TerminalSessionService"
+            android:name="com.rustywarfare.modstudio.app.terminal.compose.TerminalSessionService"
             android:exported="false" />
 
 

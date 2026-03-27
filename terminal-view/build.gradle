@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    namespace "android.zero.studio.terminal.view"
+    namespace "com.rustywarfare.modstudio.view"
     compileSdkVersion project.properties.compileSdkVersion.toInteger()
 
     dependencies {
@@ -52,7 +52,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.default
-                groupId = 'android.zero.studio.terminal'
+                groupId = 'com.rustywarfare.modstudio'
                 artifactId = 'terminal-view'
                 version = '0.118.0'
                 artifact(sourceJar)

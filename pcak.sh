@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ================= 配置区域 =================
-OLD_BASE="android.zero.studio"
-NEW_BASE="android.zero.studio.terminal"
+OLD_BASE="com.rustywarfare.modstudio"
+NEW_BASE="com.rustywarfare.modstudio"
 # ============================================
 
 # 确保 Shell 环境正常
