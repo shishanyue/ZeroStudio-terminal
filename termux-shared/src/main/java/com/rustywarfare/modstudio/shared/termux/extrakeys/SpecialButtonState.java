@@ -18,7 +18,7 @@ public class SpecialButtonState {
 
     List<MaterialButton> buttons = new ArrayList<>();
 
-    ExtraKeysView mExtraKeysView;
+    final ExtraKeysView mExtraKeysView;
 
     /**
      * Initialize a {@link SpecialButtonState} to maintain state of a {@link SpecialButton}.

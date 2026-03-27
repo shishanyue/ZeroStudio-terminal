@@ -72,8 +72,8 @@ public class ResultData implements Serializable {
     }
 
 
-    public synchronized boolean setStateFailed(@NonNull Error error) {
-        return setStateFailed(error.getType(), error.getCode(), error.getMessage(), null);
+    public synchronized void setStateFailed(@NonNull Error error) {
+        setStateFailed(error.getType(), error.getCode(), error.getMessage(), null);
     }
 
     public synchronized boolean setStateFailed(@NonNull Error error, Throwable throwable) {
@@ -116,7 +116,7 @@ public class ResultData implements Serializable {
     }
 
     public int getErrCode() {
-        if (errorsList != null && errorsList.size() > 0)
+        if (errorsList != null && !errorsList.isEmpty())
             return errorsList.get(errorsList.size() - 1).getCode();
         else
             return Errno.ERRNO_SUCCESS.getCode();

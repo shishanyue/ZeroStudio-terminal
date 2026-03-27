@@ -10,7 +10,7 @@ import java.util.Map;
 public class ExtraKeysConstants {
 
     /** Defines the repetitive keys that can be passed to {@link ExtraKeysView#setRepetitiveKeys(List)}. */
-    public static List<String> PRIMARY_REPETITIVE_KEYS = Arrays.asList(
+    public static final List<String> PRIMARY_REPETITIVE_KEYS = Arrays.asList(
         "UP", "DOWN", "LEFT", "RIGHT",
         "BKSP", "DEL",
         "PGUP", "PGDN");
@@ -18,7 +18,7 @@ public class ExtraKeysConstants {
 
 
     /** Defines the {@link KeyEvent} for common keys. */
-    public static Map<String, Integer> PRIMARY_KEY_CODES_FOR_STRINGS = new HashMap<String, Integer>() {{
+    public static final Map<String, Integer> PRIMARY_KEY_CODES_FOR_STRINGS = new HashMap<String, Integer>() {{
         put("SPACE", KeyEvent.KEYCODE_SPACE);
         put("ESC", KeyEvent.KEYCODE_ESCAPE);
         put("TAB", KeyEvent.KEYCODE_TAB);

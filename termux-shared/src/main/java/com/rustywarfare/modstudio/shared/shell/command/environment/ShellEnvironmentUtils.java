@@ -172,7 +172,7 @@ public class ShellEnvironmentUtils {
         if (homeDirectory != null && !homeDirectory.isEmpty()) {
             Error error = FileUtils.createDirectoryFile("shell home", homeDirectory);
             if (error != null) {
-                Logger.logErrorExtended(LOG_TAG, "Failed to create shell home directory\n" + error.toString());
+                Logger.logErrorExtended(LOG_TAG, "Failed to create shell home directory\n" + error);
             }
         }
     }

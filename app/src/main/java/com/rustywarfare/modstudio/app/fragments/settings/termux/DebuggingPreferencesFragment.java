@@ -46,7 +46,7 @@ public class DebuggingPreferencesFragment extends PreferenceFragmentCompat {
         }
     }
 
-    public static ListPreference setLogLevelListPreferenceData(ListPreference logLevelListPreference, Context context, int logLevel) {
+    public static void setLogLevelListPreferenceData(ListPreference logLevelListPreference, Context context, int logLevel) {
         if (logLevelListPreference == null)
             logLevelListPreference = new ListPreference(context);
 
@@ -59,7 +59,6 @@ public class DebuggingPreferencesFragment extends PreferenceFragmentCompat {
         logLevelListPreference.setValue(String.valueOf(logLevel));
         logLevelListPreference.setDefaultValue(Logger.DEFAULT_LOG_LEVEL);
 
-        return logLevelListPreference;
     }
 
 }

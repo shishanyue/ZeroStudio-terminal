@@ -17,17 +17,17 @@ public class PeerCred {
     public static final String LOG_TAG = "PeerCred";
 
     /** Process Id. */
-    public int pid;
+    public final int pid;
     /** Process Name. */
     public String pname;
 
     /** User Id. */
-    public int uid;
+    public final int uid;
     /** User name. */
     public String uname;
 
     /** Group Id. */
-    public int gid;
+    public final int gid;
     /** Group name. */
     public String gname;
 

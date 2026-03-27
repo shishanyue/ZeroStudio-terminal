@@ -35,7 +35,7 @@ public class NativeDispatcher {
         try {
             fileAttributes.loadFromStructStat(Os.fstat(fileDescriptor));
         } catch (ErrnoException e) {
-            throw new IOException("Failed to run Os.fstat() on file descriptor \"" + fileDescriptor.toString() + "\": " + e.getMessage());
+            throw new IOException("Failed to run Os.fstat() on file descriptor \"" + fileDescriptor + "\": " + e.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class NativeDispatcher {
         if (fileDescriptor == null) throw new IOException("The file descriptor is null");
 
         if (!fileDescriptor.valid())
-            throw new IOException("No such file descriptor: \"" + fileDescriptor.toString() + "\"");
+            throw new IOException("No such file descriptor: \"" + fileDescriptor + "\"");
     }
 
 }

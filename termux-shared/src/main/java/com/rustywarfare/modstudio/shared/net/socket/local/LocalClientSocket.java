@@ -65,18 +65,18 @@ public class LocalClientSocket implements Closeable {
     }
 
 
-    /** Close client socket. */
-    public synchronized Error closeClientSocket(boolean logErrorMessage) {
+    /**
+     * Close client socket.
+     */
+    public synchronized void closeClientSocket(boolean logErrorMessage) {
         try {
             close();
         } catch (IOException e) {
             Error error = LocalSocketErrno.ERRNO_CLOSE_CLIENT_SOCKET_FAILED_WITH_EXCEPTION.getError(e, mLocalSocketRunConfig.getTitle(), e.getMessage());
             if (logErrorMessage)
                 Logger.logErrorExtended(LOG_TAG, error.getErrorLogString());
-            return error;
         }
 
-        return null;
     }
 
     /** Close client socket that exists at fd. */

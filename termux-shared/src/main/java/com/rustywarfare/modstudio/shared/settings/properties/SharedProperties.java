@@ -266,7 +266,7 @@ public class SharedProperties {
      * @return Returns the {@link File} object for Termux:Float app properties.
      */
     public static File getPropertiesFileFromList(List<String> propertiesFilePaths, @NonNull String logTag) {
-        if (propertiesFilePaths == null || propertiesFilePaths.size() == 0)
+        if (propertiesFilePaths == null || propertiesFilePaths.isEmpty())
             return null;
 
         for(String propertiesFilePath : propertiesFilePaths) {
@@ -428,31 +428,28 @@ public class SharedProperties {
      * properties.
      *
      * @param properties The {@link Properties} object to add value to.
-     * @param key The key for which to add the value to the properties.
-     * @param value The {@link String} to add to the properties.
-     * @return Returns {@code true} if value was successfully added, otherwise {@code false}.
+     * @param key        The key for which to add the value to the properties.
+     * @param value      The {@link String} to add to the properties.
      */
-    public static boolean putToProperties(Properties properties, String key, String value) {
+    public static void putToProperties(Properties properties, String key, String value) {
 
         if (properties == null) {
             Logger.logError(LOG_TAG, "Properties passed to SharedProperties.putToProperties() is null");
-            return false;
+            return;
         }
 
         // null keys are not allowed to be stored in mMap
         if (key == null) {
             Logger.logError(LOG_TAG, "Cannot put a null key into properties");
-            return false;
+            return;
         }
 
         if (value != null) {
             properties.put(key, value);
-            return true;
         } else {
             properties.remove(key);
         }
 
-        return true;
     }
 
     public static Properties getPropertiesCopy(Properties inputProperties) {

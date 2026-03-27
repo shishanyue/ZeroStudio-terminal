@@ -289,7 +289,7 @@ final class TermuxInstaller {
                     error = FileUtils.clearDirectory("~/storage", storageDir.getAbsolutePath());
                     if (error != null) {
                         Logger.logErrorAndShowToast(context, LOG_TAG, error.getMessage());
-                        Logger.logErrorExtended(LOG_TAG, "Setup Storage Error\n" + error.toString());
+                        Logger.logErrorExtended(LOG_TAG, "Setup Storage Error\n" + error);
                         TermuxCrashUtils.sendCrashReportNotification(context, LOG_TAG, title, null,
                             "## " + title + "\n\n" + Error.getErrorMarkdownString(error),
                             true, false, TermuxUtils.AppInfoMode.TERMUX_PACKAGE, true);

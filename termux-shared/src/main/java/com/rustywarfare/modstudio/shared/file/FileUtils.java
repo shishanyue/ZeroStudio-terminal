@@ -160,7 +160,7 @@ public class FileUtils {
      * @return Returns {@code true} if path in {@code dirPaths}, otherwise returns {@code false}.
      */
     public static boolean isPathInDirPaths(String path, final List<String> dirPaths, final boolean ensureUnder) {
-        if (path == null || path.isEmpty() || dirPaths == null || dirPaths.size() < 1) return false;
+        if (path == null || path.isEmpty() || dirPaths == null || dirPaths.isEmpty()) return false;
 
         try {
             path = new File(path).getCanonicalPath();
@@ -234,7 +234,7 @@ public class FileUtils {
                 return null;
 
             // If sub files exists but no file should be ignored
-            if (ignoredSubFilePaths == null || ignoredSubFilePaths.size() == 0)
+            if (ignoredSubFilePaths == null || ignoredSubFilePaths.isEmpty())
                 return FileUtilsErrno.ERRNO_NON_EMPTY_DIRECTORY_FILE.getError(label, filePath);
 
             // If a sub file does not exist in ignored file path

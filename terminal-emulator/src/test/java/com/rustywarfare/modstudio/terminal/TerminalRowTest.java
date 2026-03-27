@@ -412,7 +412,7 @@ public class TerminalRowTest extends TestCase {
 		assertEquals(80, row.getSpaceUsed());
 		row.setChar(0, 0x0303, 0);
 		assertEquals(81, row.getSpaceUsed());
-		// assertEquals("\u00F1  ", new String(term.getScreen().getLine(0)));
+		// assertEquals("ñ  ", new String(term.getScreen().getLine(0)));
 		assertLineStartsWith(0x006E, 0x0303, ' ');
 	}
 

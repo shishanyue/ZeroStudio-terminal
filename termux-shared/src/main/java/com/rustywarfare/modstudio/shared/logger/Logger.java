@@ -293,11 +293,11 @@ public class Logger {
     }
 
     public static String getMessageAndStackTracesString(String message, List<Throwable> throwablesList) {
-        if (message == null && (throwablesList == null || throwablesList.size() == 0))
+        if (message == null && (throwablesList == null || throwablesList.isEmpty()))
             return null;
-        else if (message != null && (throwablesList != null && throwablesList.size() != 0))
+        else if (message != null && (throwablesList != null && !throwablesList.isEmpty()))
             return message + ":\n" + getStackTracesString(null, getStackTracesStringArray(throwablesList));
-        else if (throwablesList == null || throwablesList.size() == 0)
+        else if (throwablesList == null || throwablesList.isEmpty())
             return message;
         else
             return getStackTracesString(null, getStackTracesStringArray(throwablesList));

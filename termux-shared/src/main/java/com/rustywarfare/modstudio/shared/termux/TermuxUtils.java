@@ -660,13 +660,13 @@ public class TermuxUtils {
         // Build script output
         StringBuilder logcatOutput = new StringBuilder();
         logcatOutput.append("$ ").append(logcatScript);
-        logcatOutput.append("\n").append(executionCommand.resultData.stdout.toString());
+        logcatOutput.append("\n").append(executionCommand.resultData.stdout);
 
         boolean stderrSet = !executionCommand.resultData.stderr.toString().isEmpty();
         if (executionCommand.resultData.exitCode != 0 || stderrSet) {
             Logger.logErrorExtended(LOG_TAG, executionCommand.toString());
             if (stderrSet)
-                logcatOutput.append("\n").append(executionCommand.resultData.stderr.toString());
+                logcatOutput.append("\n").append(executionCommand.resultData.stderr);
             logcatOutput.append("\n").append("exit code: ").append(executionCommand.resultData.exitCode.toString());
         }
 

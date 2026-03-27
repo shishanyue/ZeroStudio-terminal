@@ -3,13 +3,13 @@ package com.rustywarfare.modstudio.shared.shell.command.environment;
 public class ShellEnvironmentVariable implements Comparable<ShellEnvironmentVariable> {
 
     /** The name for environment variable */
-    public String name;
+    public final String name;
 
     /** The value for environment variable */
-    public String value;
+    public final String value;
 
     /** If environment variable {@link #value} is already escaped. */
-    public boolean escaped;
+    public final boolean escaped;
 
     public ShellEnvironmentVariable(String name, String value) {
         this(name, value, false);

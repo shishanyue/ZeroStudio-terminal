@@ -276,7 +276,7 @@ public class ReportActivity extends AppCompatActivity {
             mReportActivityMarkdownString = this.getString(R.string.msg_report_truncated) +
                 DataUtils.getTruncatedCommandOutput(reportString.toString(), ACTIVITY_TEXT_SIZE_LIMIT_IN_BYTES, true, false, false);
         } else if (truncated) {
-            mReportActivityMarkdownString = this.getString(R.string.msg_report_truncated) + reportString.toString();
+            mReportActivityMarkdownString = this.getString(R.string.msg_report_truncated) + reportString;
         } else {
             mReportActivityMarkdownString = reportString.toString();
         }
@@ -289,11 +289,11 @@ public class ReportActivity extends AppCompatActivity {
 
     public static class NewInstanceResult {
         /** An intent that can be used to start the {@link ReportActivity}. */
-        public Intent contentIntent;
+        public final Intent contentIntent;
         /** An intent that can should be adding as the {@link android.app.Notification#deleteIntent}
          * by a call to {@link android.app.PendingIntent#getBroadcast(Context, int, Intent, int)}
          * so that {@link ReportActivityBroadcastReceiver} can do cleanup of {@link #EXTRA_REPORT_INFO_OBJECT_FILE_PATH}. */
-        public Intent deleteIntent;
+        public final Intent deleteIntent;
 
         NewInstanceResult(Intent contentIntent, Intent deleteIntent) {
             this.contentIntent = contentIntent;
@@ -420,17 +420,16 @@ public class ReportActivity extends AppCompatActivity {
      * The {@link Context} object passed must be of the same package with which {@link #newInstance(Context, ReportInfo)}
      * was called since a call to {@link Context#getCacheDir()} is made.
      *
-     * @param context The {@link Context} for operations.
-     * @param days The x amount of days before which files should be deleted. This must be `>=0`.
+     * @param context       The {@link Context} for operations.
+     * @param days          The x amount of days before which files should be deleted. This must be `>=0`.
      * @param isSynchronous If set to {@code true}, then the command will be executed in the
      *                      caller thread and results returned synchronously.
      *                      If set to {@code false}, then a new thread is started run the commands
      *                      asynchronously in the background and control is returned to the caller thread.
-     * @return Returns the {@code error} if deleting was not successful, otherwise {@code null}.
      */
-    public static Error deleteReportInfoFilesOlderThanXDays(@NonNull final Context context, int days, final boolean isSynchronous) {
+    public static void deleteReportInfoFilesOlderThanXDays(@NonNull final Context context, int days, final boolean isSynchronous) {
         if (isSynchronous) {
-            return deleteReportInfoFilesOlderThanXDaysInner(context, days);
+            deleteReportInfoFilesOlderThanXDaysInner(context, days);
         } else {
             new Thread() { public void run() {
                 Error error = deleteReportInfoFilesOlderThanXDaysInner(context, days);
@@ -438,7 +437,6 @@ public class ReportActivity extends AppCompatActivity {
                     Logger.logErrorExtended(LOG_TAG, error.toString());
                 }
             }}.start();
-            return null;
         }
     }
 

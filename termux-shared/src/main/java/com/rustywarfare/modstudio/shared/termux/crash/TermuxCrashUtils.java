@@ -35,7 +35,7 @@ public class TermuxCrashUtils implements CrashHandler.CrashHandlerClient {
 
     public enum TYPE {
         UNCAUGHT_EXCEPTION,
-        CAUGHT_EXCEPTION;
+        CAUGHT_EXCEPTION
     }
 
     private final TYPE mType;

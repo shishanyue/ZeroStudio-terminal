@@ -291,8 +291,8 @@ public class ExecutionCommand {
     }
 
 
-    public synchronized boolean setStateFailed(@NonNull Error error) {
-        return setStateFailed(error.getType(), error.getCode(), error.getMessage(), null);
+    public synchronized void setStateFailed(@NonNull Error error) {
+        setStateFailed(error.getType(), error.getCode(), error.getMessage(), null);
     }
 
     public synchronized boolean setStateFailed(@NonNull Error error, Throwable throwable) {
@@ -306,8 +306,8 @@ public class ExecutionCommand {
         return setStateFailed(null, code, message, null);
     }
 
-    public synchronized boolean setStateFailed(int code, String message, Throwable throwable) {
-        return setStateFailed(null, code, message, Collections.singletonList(throwable));
+    public synchronized void setStateFailed(int code, String message, Throwable throwable) {
+        setStateFailed(null, code, message, Collections.singletonList(throwable));
     }
 
     public synchronized boolean setStateFailed(int code, String message, List<Throwable> throwablesList) {

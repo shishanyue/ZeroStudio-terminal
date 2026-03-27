@@ -63,7 +63,7 @@ public class PermissionUtils {
     public static boolean checkPermissions(@NonNull Context context, @NonNull String[] permissions) {
         // checkSelfPermission may return true for permissions not even requested
         List<String> permissionsNotRequested = getPermissionsNotRequested(context, permissions);
-        if (permissionsNotRequested.size() > 0) {
+        if (!permissionsNotRequested.isEmpty()) {
             Logger.logError(LOG_TAG,
                 context.getString(R.string.error_attempted_to_check_for_permissions_not_requested,
                     Joiner.on(", ").join(permissionsNotRequested)));
@@ -121,7 +121,7 @@ public class PermissionUtils {
     public static boolean requestPermissions(@NonNull Context context, @NonNull String[] permissions,
                                              int requestCode) {
         List<String> permissionsNotRequested = getPermissionsNotRequested(context, permissions);
-        if (permissionsNotRequested.size() > 0) {
+        if (!permissionsNotRequested.isEmpty()) {
             Logger.logErrorAndShowToast(context, LOG_TAG,
                 context.getString(R.string.error_attempted_to_ask_for_permissions_not_requested,
                     Joiner.on(", ").join(permissionsNotRequested)));
@@ -169,7 +169,7 @@ public class PermissionUtils {
      * @return Returns {@code true} if permission has been requested, otherwise {@code false}.
      */
     public static boolean isPermissionRequested(@NonNull Context context, @NonNull String permission) {
-        return getPermissionsNotRequested(context, new String[]{permission}).size() == 0;
+        return getPermissionsNotRequested(context, new String[]{permission}).isEmpty();
     }
 
     /**
@@ -320,16 +320,15 @@ public class PermissionUtils {
      * Request user to grant {@link Manifest.permission#READ_EXTERNAL_STORAGE} and
      * {@link Manifest.permission#WRITE_EXTERNAL_STORAGE} permissions to the app.
      *
-     * @param context The context for operations. It must be an instance of {@link Activity} or
-     * {@link AppCompatActivity}.
+     * @param context     The context for operations. It must be an instance of {@link Activity} or
+     *                    {@link AppCompatActivity}.
      * @param requestCode The request code to use while asking for permission. It must be `>=0` or
      *                    will fail silently and will log an exception.
-     * @return Returns {@code true} if requesting the permission was successful, otherwise {@code false}.
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static boolean requestLegacyStorageExternalPermission(@NonNull Context context, int requestCode) {
+    public static void requestLegacyStorageExternalPermission(@NonNull Context context, int requestCode) {
         Logger.logInfo(LOG_TAG, "Requesting legacy external storage permission");
-        return requestPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE, requestCode);
+        requestPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE, requestCode);
     }
 
     /** Wrapper for {@link #requestManageStorageExternalPermission(Context, int)}. */
@@ -532,9 +531,11 @@ public class PermissionUtils {
             return true;
     }
 
-    /** Wrapper for {@link #requestDisableBatteryOptimizations(Context, int)}. */
-    public static Error requestDisableBatteryOptimizations(@NonNull Context context) {
-        return requestDisableBatteryOptimizations(context, -1);
+    /**
+     * Wrapper for {@link #requestDisableBatteryOptimizations(Context, int)}.
+     */
+    public static void requestDisableBatteryOptimizations(@NonNull Context context) {
+        requestDisableBatteryOptimizations(context, -1);
     }
 
     /**

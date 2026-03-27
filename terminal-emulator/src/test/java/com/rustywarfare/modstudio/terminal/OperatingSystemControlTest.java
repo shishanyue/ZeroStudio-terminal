@@ -23,15 +23,15 @@ public class OperatingSystemControlTest extends TerminalTestCase {
 		expectedTitleChanges.add(new ChangedTitle("Hello, world", "Goodbye, world"));
 		assertEquals(expectedTitleChanges, mOutput.titleChanges);
 
-		enterString("\033]0;Goodbye, \u00F1 world\007");
-		assertEquals("Goodbye, \uu00F1 world", mTerminal.getTitle());
-		expectedTitleChanges.add(new ChangedTitle("Goodbye, world", "Goodbye, \uu00F1 world"));
+		enterString("\033]0;Goodbye, ñ world\007");
+		assertEquals("Goodbye, ñ world", mTerminal.getTitle());
+		expectedTitleChanges.add(new ChangedTitle("Goodbye, world", "Goodbye, ñ world"));
 		assertEquals(expectedTitleChanges, mOutput.titleChanges);
 
 		// 2 should work as well (0 sets both title and icon).
 		enterString("\033]2;Updated\007");
 		assertEquals("Updated", mTerminal.getTitle());
-		expectedTitleChanges.add(new ChangedTitle("Goodbye, \uu00F1 world", "Updated"));
+		expectedTitleChanges.add(new ChangedTitle("Goodbye, ñ world", "Updated"));
 		assertEquals(expectedTitleChanges, mOutput.titleChanges);
 
 		enterString("\033[22;0t");

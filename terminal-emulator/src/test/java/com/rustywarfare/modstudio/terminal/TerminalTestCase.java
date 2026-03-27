@@ -215,15 +215,15 @@ public abstract class TerminalTestCase extends TestCase {
 		return this;
 	}
 
-	protected TerminalTestCase assertLineStartsWith(int line, int... codePoints) {
-		char[] chars = mTerminal.getScreen().mLines[mTerminal.getScreen().externalToInternalRow(line)].mText;
+	protected TerminalTestCase assertLineStartsWith() {
+		char[] chars = mTerminal.getScreen().mLines[mTerminal.getScreen().externalToInternalRow(0)].mText;
 		int charIndex = 0;
-		for (int i = 0; i < codePoints.length; i++) {
+		for (int i = 0; i < new int[]{TerminalEmulator.UNICODE_REPLACEMENT_CHAR, 89, ' '}.length; i++) {
 			int lineCodePoint = chars[charIndex++];
 			if (Character.isHighSurrogate((char) lineCodePoint)) {
 				lineCodePoint = Character.toCodePoint((char) lineCodePoint, chars[charIndex++]);
 			}
-			assertEquals("Differing a code point index=" + i, codePoints[i], lineCodePoint);
+			assertEquals("Differing a code point index=" + i, new int[]{TerminalEmulator.UNICODE_REPLACEMENT_CHAR, 89, ' '}[i], lineCodePoint);
 		}
 		return this;
 	}

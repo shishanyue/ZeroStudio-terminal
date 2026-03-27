@@ -70,10 +70,10 @@ public class TerminalTest extends TerminalTestCase {
 		// int combiningTilde = 0x0303;
 		// int combined = 0x00F1;
 		withTerminalSized(3, 3).assertLinesAre("   ", "   ", "   ");
-		enterString("\u006E\u0303");
-		assertEquals(1, WcWidth.width("\u006E\u0303".toCharArray(), 0));
-		// assertEquals("\u00F1  ", new String(mTerminal.getScreen().getLine(0)));
-		assertLinesAre("\u006E\u0303  ", "   ", "   ");
+		enterString("n\u0303");
+		assertEquals(1, WcWidth.width("n\u0303".toCharArray(), 0));
+		// assertEquals("ñ  ", new String(mTerminal.getScreen().getLine(0)));
+		assertLinesAre("n\u0303  ", "   ", "   ");
 	}
 
 	/** On "\e[18t" xterm replies with "\e[8;${HEIGHT};${WIDTH}t" */

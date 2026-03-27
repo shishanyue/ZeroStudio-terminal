@@ -818,7 +818,7 @@ public class PackageUtils {
             if (packageManager != null) {
                 Intent intent = new Intent();
                 intent.setClassName(packageName, className);
-                return packageManager.queryIntentActivities(intent, flags).size() > 0;
+                return !packageManager.queryIntentActivities(intent, flags).isEmpty();
             }
         } catch (final Exception e) {
             // ignore
