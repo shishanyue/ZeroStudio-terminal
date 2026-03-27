@@ -3,6 +3,7 @@ package com.rustywarfare.modstudio.app.terminal.compose
 import android.content.Context
 import android.content.SharedPreferences
 import kotlinx.coroutines.flow.MutableStateFlow
+import androidx.core.content.edit
 
 /**
  * 终端设置状态管理器。
@@ -30,21 +31,21 @@ object TerminalSettings {
 
     fun updateFontSize(size: Int) {
         fontSize.value = size
-        prefs.edit().putInt("font_size", size).apply()
+        prefs.edit {putInt("font_size", size)}
     }
 
     fun updateKeepScreenOn(keep: Boolean) {
         keepScreenOn.value = keep
-        prefs.edit().putBoolean("keep_screen_on", keep).apply()
+        prefs.edit { putBoolean("keep_screen_on", keep)}
     }
 
     fun updateCursorStyle(style: Int) {
         cursorStyle.value = style
-        prefs.edit().putInt("cursor_style", style).apply()
+        prefs.edit {putInt("cursor_style", style)}
     }
 
     fun updateBellVibrate(vibrate: Boolean) {
         bellVibrate.value = vibrate
-        prefs.edit().putBoolean("bell_vibrate", vibrate).apply()
+        prefs.edit { putBoolean("bell_vibrate", vibrate) }
     }
 }

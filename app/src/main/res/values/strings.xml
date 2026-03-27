@@ -15,9 +15,9 @@
 
     
     <!-- 部署相关 -->
-    <string name="terminal_checking">正在检查 Ubuntu 环境...</string>
+    <string name="terminal_checking">正在检查 Ubuntu 环境…</string>
     <string name="terminal_downloading">正在下载组件: %1$s</string>
-    <string name="terminal_extracting">正在解压 RootFS (这可能需要几分钟)...</string>
+    <string name="terminal_extracting">正在解压 RootFS (这可能需要几分钟)…</string>
     <string name="terminal_setup_failed">初始化失败: %1$s</string>
     <string name="terminal_retry">重试</string>
     

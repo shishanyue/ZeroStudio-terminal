@@ -602,7 +602,7 @@ public final class TerminalView extends View {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    @TargetApi(23)
+    @androidx.annotation.RequiresApi(23)
     public boolean onTouchEvent(MotionEvent event) {
         if (mEmulator == null) return true;
         final int action = event.getAction();

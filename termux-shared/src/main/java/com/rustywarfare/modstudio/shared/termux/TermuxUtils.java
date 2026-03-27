@@ -44,7 +44,7 @@ public class TermuxUtils {
         TERMUX_AND_PLUGIN_PACKAGE,
         /** Get info for Termux app and its plugins listed in {@link TermuxConstants#TERMUX_PLUGIN_APP_PACKAGE_NAMES_LIST}. */
         TERMUX_AND_PLUGIN_PACKAGES,
-        /* Get info for all the Termux app plugins listed in {@link TermuxConstants#TERMUX_PLUGIN_APP_PACKAGE_NAMES_LIST}. */
+        /** Get info for all the Termux app plugins listed in {@link TermuxConstants#TERMUX_PLUGIN_APP_PACKAGE_NAMES_LIST}. */
         TERMUX_PLUGIN_PACKAGES,
         /* Get info for Termux app and the calling package that called a Termux API. */
         TERMUX_AND_CALLING_PACKAGE,
