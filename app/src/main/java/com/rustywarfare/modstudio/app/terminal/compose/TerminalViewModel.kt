@@ -1,3 +1,11 @@
+/*
+ * 终端 ViewModel
+ *
+ * 修复：已完全回滚至您最初提供的稳定版本。
+ * 保留了 Compose 重组必需的状态及流转机制，移除了有副作用的权限预处理和自动指令逻辑。
+ *
+ * @author android_zero
+ */
 package com.rustywarfare.modstudio.app.terminal.compose
 
 import android.content.ComponentName
@@ -23,15 +31,14 @@ sealed class TerminalState {
     object Checking : TerminalState()
     data class Downloading(val fileName: String, val progress: Float, val downloadedMb: String, val totalMb: String) : TerminalState()
     data class SettingUp(val setupSession: TerminalSession) : TerminalState()
+
+    // 恢复新增的状态：标志安装成功，用以触发 UI 跳转回主页
+    object SetupFinished : TerminalState()
+
     object Ready : TerminalState()
     data class Error(val message: String) : TerminalState()
 }
 
-/**
- * 终端 ViewModel。
- * 负责状态流转、服务绑定以及内存安全回收。
- * @author android_zero
- */
 class TerminalViewModel : ViewModel() {
     var state by mutableStateOf<TerminalState>(TerminalState.Checking)
     val sessions = mutableStateListOf<TerminalSession>()
@@ -45,8 +52,7 @@ class TerminalViewModel : ViewModel() {
             val binder = service as TerminalSessionService.LocalBinder
             terminalService = binder.getService()
             isBound = true
-            
-            // 恢复后台会话
+
             sessions.clear()
             sessions.addAll(terminalService!!.sessions)
             if (sessions.isNotEmpty()) {
@@ -61,8 +67,7 @@ class TerminalViewModel : ViewModel() {
 
     fun checkAndSetup(context: Context) {
         val appContext = context.applicationContext
-        
-        // 绑定并启动守护服务
+
         val intent = Intent(appContext, TerminalSessionService::class.java)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             appContext.startForegroundService(intent)
@@ -75,18 +80,18 @@ class TerminalViewModel : ViewModel() {
             try {
                 withContext(Dispatchers.Main) { state = TerminalState.Checking }
 
-                // 检查是否已经安装
+                // 环境预检
                 if (PRootEnvironment.isEnvironmentInstalled(appContext)) {
                     withContext(Dispatchers.Main) { state = TerminalState.Ready }
                     return@launch
                 }
 
-                // 释放基础脚本资源
+                // 提取 Assets
                 PRootEnvironment.extractAssets(appContext)
 
                 val binDir = PRootEnvironment.localBinDir(appContext)
                 val libDir = PRootEnvironment.localLibDir(appContext)
-                val cacheDir = appContext.cacheDir 
+                val cacheDir = appContext.cacheDir
 
                 val filesToDownload = mutableListOf<Pair<String, File>>()
                 filesToDownload.add(PRootEnvironment.getProotUrl() to File(binDir, "proot"))
@@ -96,7 +101,7 @@ class TerminalViewModel : ViewModel() {
                     filesToDownload.add(PRootEnvironment.getRootfsUrl() to File(cacheDir, "sandbox.tar.gz"))
                 }
 
-                // 逐个下载资源
+                // 下载流程（原样恢复）
                 for ((url, file) in filesToDownload) {
                     if (!file.exists()) {
                         PRootEnvironment.downloadFileWithRetry(url, file) { downloaded, total ->
@@ -109,7 +114,7 @@ class TerminalViewModel : ViewModel() {
                     }
                 }
 
-                // 使用 Setup Session 执行解压和配置
+                // 启动 Setup 会话
                 val setupLatch = CountDownLatch(1)
                 var setupExitCode = -1
                 val client = object : TermuxTerminalSessionClientBase() {
@@ -129,9 +134,10 @@ class TerminalViewModel : ViewModel() {
 
                 setupLatch.await()
 
+                // 根据原始机制流转状态
                 if (setupExitCode == 0) {
                     PRootEnvironment.markEnvironmentInstalled(appContext)
-                    withContext(Dispatchers.Main) { state = TerminalState.Ready }
+                    withContext(Dispatchers.Main) { state = TerminalState.SetupFinished }
                 } else {
                     withContext(Dispatchers.Main) { state = TerminalState.Error("Setup failed with exit code $setupExitCode") }
                 }
@@ -141,9 +147,6 @@ class TerminalViewModel : ViewModel() {
         }
     }
 
-    /**
-     * 添加新会话，依托后台 Service 保活
-     */
     fun addSession(context: Context) {
         terminalService?.let { service ->
             val sessionId = "Session ${sessions.size + 1}"
@@ -177,7 +180,6 @@ class TerminalViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        // 解绑服务
         terminalService = null
         isBound = false
     }

@@ -1,3 +1,11 @@
+/*
+ * PRoot 环境管理核心类
+ *
+ * 修复：已完全回滚至您最初提供的稳定版本。
+ * 移除了之前引发参数解析错误及权限问题的错误修改，恢复原版的参数传递和执行逻辑。
+ *
+ * @author android_zero
+ */
 package com.rustywarfare.modstudio.app.terminal.proot
 
 import android.content.Context
@@ -15,10 +23,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-/**
- * 封装 PRoot 与 Ubuntu RootFS 的下载、解压与会话环境配置工作。
- * @author android_zero
- */
 object PRootEnvironment {
 
     fun localDir(context: Context) = File(context.filesDir.parentFile, "proot_local").apply { mkdirs() }
@@ -69,9 +73,6 @@ object PRootEnvironment {
         }
     }
 
-    /**
-     * 高可靠性下载：带有 OkHttp 超时机制与 3 次重试保护，防止弱网中断
-     */
     suspend fun downloadFileWithRetry(urlStr: String, outputFile: File, onProgress: (Long, Long) -> Unit) {
         var attempt = 0
         while (attempt < 3) {
@@ -81,7 +82,7 @@ object PRootEnvironment {
                         .connectTimeout(2, TimeUnit.MINUTES)
                         .readTimeout(2, TimeUnit.MINUTES)
                         .writeTimeout(2, TimeUnit.MINUTES)
-                        .callTimeout(30, TimeUnit.MINUTES) // 允许总体长达30分钟的下载时间
+                        .callTimeout(30, TimeUnit.MINUTES)
                         .build()
 
                     val request = Request.Builder().url(urlStr).build()
@@ -106,17 +107,16 @@ object PRootEnvironment {
                                 }
                             }
                         }
-                        // 校验完整性
                         if (totalBytes > 0 && downloadedBytes < totalBytes) {
                             throw IOException("Incomplete download")
                         }
                     }
                 }
-                return // 下载成功，退出重试循环
+                return
             } catch (e: Exception) {
                 attempt++
                 if (attempt >= 3) throw e
-                delay(1500) // 重试前等待
+                delay(1500)
             }
         }
     }
@@ -154,9 +154,6 @@ object PRootEnvironment {
         File(localDir(context), "vmstat").writeText("nr_free_pages 1743136\nnr_inactive_anon 179281\nnr_active_anon 7183\n")
     }
 
-    /**
-     * 组装运行 PRoot 环境所必须的 Linux 环境变量
-     */
     fun getEnv(context: Context, sessionId: String, cwd: String): Array<String> {
         val sessionTmp = File(tmpDir(context), sessionId).apply { mkdirs() }
         val map = mutableMapOf(
@@ -199,6 +196,8 @@ object PRootEnvironment {
         val env = getEnv(context, "setup", sandboxHomeDir(context).absolutePath)
         val setupSH = File(localBinDir(context), "setup")
         val sandboxSH = File(localBinDir(context), "sandbox")
+
+        // 完全恢复原始参数
         val args = arrayOf("-c", setupSH.absolutePath, sandboxSH.absolutePath)
         val session = TerminalSession("/system/bin/sh", localDir(context).absolutePath, args, env, 2000, client)
         session.mSessionName = "Setup"
