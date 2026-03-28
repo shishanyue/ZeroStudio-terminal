@@ -109,22 +109,21 @@ public class PermissionUtils {
      * option in prompt. The user will have to manually enable permission in app info in Android
      * settings. If user grants and then denies in settings, then next time prompt will shown.
      *
-     * @param context The context for operations. It must be an instance of {@link Activity} or
-     * {@link AppCompatActivity}.
+     * @param context     The context for operations. It must be an instance of {@link Activity} or
+     *                    {@link AppCompatActivity}.
      * @param permissions The {@link String[]} names for permissions to request.
      * @param requestCode The request code to use while asking for permissions. It must be `>=0` or
      *                    will fail silently and will log an exception.
-     * @return Returns {@code true} if requesting the permissions was successful, otherwise {@code false}.
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static boolean requestPermissions(@NonNull Context context, @NonNull String[] permissions,
-                                             int requestCode) {
+    public static void requestPermissions(@NonNull Context context, @NonNull String[] permissions,
+                                          int requestCode) {
         List<String> permissionsNotRequested = getPermissionsNotRequested(context, permissions);
         if (!permissionsNotRequested.isEmpty()) {
             Logger.logErrorAndShowToast(context, LOG_TAG,
                 context.getString(R.string.error_attempted_to_ask_for_permissions_not_requested,
                     Joiner.on(", ").join(permissionsNotRequested)));
-            return false;
+            return;
         }
 
         for (String permission : permissions) {
@@ -141,20 +140,19 @@ public class PermissionUtils {
                     else {
                         Error.logErrorAndShowToast(context, LOG_TAG,
                             FunctionErrno.ERRNO_PARAMETER_NOT_INSTANCE_OF.getError("context", "requestPermissions", "Activity or AppCompatActivity"));
-                        return false;
+                        return;
                     }
                 } catch (Exception e) {
                     String errmsg = context.getString(R.string.error_failed_to_request_permissions, requestCode, Arrays.toString(permissions));
                     Logger.logStackTraceWithMessage(LOG_TAG, errmsg, e);
                     Logger.showToast(context, errmsg + "\n" + e.getMessage(), true);
-                    return false;
+                    return;
                 }
 
                 break;
             }
         }
 
-        return true;
     }
 
 

@@ -506,7 +506,7 @@ public class TermuxUtils {
     public static String getReportIssueMarkdownString(@NonNull final Context context) {
         if (context == null) return "null";
 
-        String markdownString = "## Where To Report An Issue" +
+        return "## Where To Report An Issue" +
             "\n\n" + context.getString(R.string.msg_report_issue, TermuxConstants.TERMUX_WIKI_URL) + "\n" +
             "\n\n### Email\n" +
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_SUPPORT_EMAIL_URL, TermuxConstants.TERMUX_SUPPORT_EMAIL_MAILTO_URL) + "  " +
@@ -523,8 +523,6 @@ public class TermuxUtils {
             "\n\n### GitHub Issues for Termux packages\n" +
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_PACKAGES_GITHUB_REPO_NAME, TermuxConstants.TERMUX_PACKAGES_GITHUB_ISSUES_REPO_URL) + "  " +
             "\n##\n";
-
-        return markdownString;
     }
 
     /**
@@ -536,7 +534,7 @@ public class TermuxUtils {
     public static String getImportantLinksMarkdownString(@NonNull final Context context) {
         if (context == null) return "null";
 
-        String markdownString = "## Important Links" +
+        return "## Important Links" +
             "\n\n### GitHub\n" +
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_APP_NAME, TermuxConstants.TERMUX_GITHUB_REPO_URL) + "  " +
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_API_APP_NAME, TermuxConstants.TERMUX_API_GITHUB_REPO_URL) + "  " +
@@ -555,8 +553,6 @@ public class TermuxUtils {
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_APP_NAME, TermuxConstants.TERMUX_GITHUB_WIKI_REPO_URL) + "  " +
             "\n" + MarkdownUtils.getLinkMarkdownString(TermuxConstants.TERMUX_PACKAGES_GITHUB_REPO_NAME, TermuxConstants.TERMUX_PACKAGES_GITHUB_WIKI_REPO_URL) + "  " +
             "\n##\n";
-
-        return markdownString;
     }
 
 
@@ -603,11 +599,9 @@ public class TermuxUtils {
         if (!executionCommand.resultData.stderr.toString().isEmpty())
             Logger.logErrorExtended(LOG_TAG, executionCommand.toString());
 
-        String markdownString = "## " + TermuxConstants.TERMUX_APP_NAME + " APT Info\n\n" +
+        return "## " + TermuxConstants.TERMUX_APP_NAME + " APT Info\n\n" +
             executionCommand.resultData.stdout +
             "\n##\n";
-
-        return markdownString;
     }
 
     /**
@@ -671,11 +665,10 @@ public class TermuxUtils {
         }
 
         // Build markdown output
-        String markdownString = "## Logcat Dump\n\n" +
+
+        return "## Logcat Dump\n\n" +
             "\n\n" + MarkdownUtils.getMarkdownCodeForString(logcatOutput.toString(), true) +
             "\n##\n";
-
-        return markdownString;
     }
 
 

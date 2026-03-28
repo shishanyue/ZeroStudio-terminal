@@ -336,11 +336,7 @@ public class ResultSender {
             error = FileUtils.moveRegularFile(RESULT_SENDER.RESULT_FILE_ERR_PREFIX + " temp file", resultConfig.resultDirectoryPath + "/" + temp_filename,
                 resultConfig.resultDirectoryPath + "/" + filename, false);
         }
-        if (error != null) {
-            return error;
-        }
-
-        return null;
+        return error;
     }
 
 }

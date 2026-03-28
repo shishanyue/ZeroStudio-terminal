@@ -365,26 +365,22 @@ public class LocalClientSocket implements Closeable {
     @NonNull
     public String getLogString() {
 
-        String logString = "Client Socket:" +
+        return "Client Socket:" +
             "\n" + Logger.getSingleLineLogStringEntry("FD", mFD, "-") +
             "\n" + Logger.getSingleLineLogStringEntry("Creation Time", mCreationTime, "-") +
             "\n\n\n" +
             mPeerCred.getLogString();
-
-        return logString;
     }
 
     /** Get a markdown {@link String} for the {@link LocalClientSocket}. */
     @NonNull
     public String getMarkdownString() {
 
-        String markdownString = "## " + "Client Socket" +
+        return "## " + "Client Socket" +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("FD", mFD, "-") +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("Creation Time", mCreationTime, "-") +
             "\n\n\n" +
             mPeerCred.getMarkdownString();
-
-        return markdownString;
     }
 
 
@@ -418,7 +414,7 @@ public class LocalClientSocket implements Closeable {
                 return -1;
             }
 
-            return mBytes[0];
+            return mBytes[0] & 0xFF;
         }
 
         @Override

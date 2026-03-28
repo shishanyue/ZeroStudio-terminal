@@ -211,7 +211,7 @@ public class LocalSocketRunConfig implements Serializable {
     @NonNull
     public String getLogString() {
 
-        String logString = mTitle + " Socket Server Run Config:" +
+        return mTitle + " Socket Server Run Config:" +
             "\n" + Logger.getSingleLineLogStringEntry("Path", mPath, "-") +
             "\n" + Logger.getSingleLineLogStringEntry("AbstractNamespaceSocket", mAbstractNamespaceSocket, "-") +
             "\n" + Logger.getSingleLineLogStringEntry("LocalSocketManagerClient", mLocalSocketManagerClient.getClass().getName(), "-") +
@@ -220,8 +220,6 @@ public class LocalSocketRunConfig implements Serializable {
             "\n" + Logger.getSingleLineLogStringEntry("SendTimeout", getSendTimeout(), "-") +
             "\n" + Logger.getSingleLineLogStringEntry("Deadline", getDeadline(), "-") +
             "\n" + Logger.getSingleLineLogStringEntry("Backlog", getBacklog(), "-");
-
-        return logString;
     }
 
     /**
@@ -239,7 +237,7 @@ public class LocalSocketRunConfig implements Serializable {
     @NonNull
     public String getMarkdownString() {
 
-        String markdownString = "## " + mTitle + " Socket Server Run Config" +
+        return "## " + mTitle + " Socket Server Run Config" +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("Path", mPath, "-") +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("AbstractNamespaceSocket", mAbstractNamespaceSocket, "-") +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("LocalSocketManagerClient", mLocalSocketManagerClient.getClass().getName(), "-") +
@@ -248,8 +246,6 @@ public class LocalSocketRunConfig implements Serializable {
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("SendTimeout", getSendTimeout(), "-") +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("Deadline", getDeadline(), "-") +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("Backlog", getBacklog(), "-");
-
-        return markdownString;
     }
 
 

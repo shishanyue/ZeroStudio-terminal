@@ -57,11 +57,10 @@ public class FileKey {
 
     @Override
     public String toString() {
-        String sb = "(dev=" +
+        return "(dev=" +
             Long.toHexString(st_dev) +
             ",ino=" +
             st_ino +
             ')';
-        return sb;
     }
 }

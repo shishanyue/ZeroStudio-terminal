@@ -66,11 +66,9 @@ public class AmSocketServerRunConfig extends LocalSocketRunConfig implements Ser
     @NonNull
     public String getLogString() {
 
-        String logString = super.getLogString() + "\n\n\n" +
+        return super.getLogString() + "\n\n\n" +
             "Am Command:" +
             "\n" + Logger.getSingleLineLogStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-");
-
-        return logString;
     }
 
     /**
@@ -88,11 +86,9 @@ public class AmSocketServerRunConfig extends LocalSocketRunConfig implements Ser
     @NonNull
     public String getMarkdownString() {
 
-        String markdownString = super.getMarkdownString() + "\n\n\n" +
+        return super.getMarkdownString() + "\n\n\n" +
             "## " + "Am Command" +
             "\n" + MarkdownUtils.getSingleLineMarkdownStringEntry("CheckDisplayOverAppsPermission", shouldCheckDisplayOverAppsPermission(), "-");
-
-        return markdownString;
     }
 
 

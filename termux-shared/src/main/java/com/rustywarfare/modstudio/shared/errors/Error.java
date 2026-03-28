@@ -228,10 +228,8 @@ public class Error implements Serializable {
 
     public String getMinimalErrorLogString() {
 
-        String logString = getCodeString() +
+        return getCodeString() +
             getTypeAndMessageLogString();
-
-        return logString;
     }
 
     /**
@@ -247,10 +245,8 @@ public class Error implements Serializable {
 
     public String getMinimalErrorString() {
 
-        String logString = "(" + getCode() + ") " +
+        return "(" + getCode() + ") " +
             getType() + ": " + getMessage();
-
-        return logString;
     }
 
     /**
